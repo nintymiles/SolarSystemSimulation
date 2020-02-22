@@ -1,12 +1,11 @@
 #ifndef GLUTILS_H
 #define GLUTILS_H
 #include <cstdio>
-#include <stdio.h>
-#include <stdlib.h>
-#include "Constant.h"
-#include <string.h>
-#include <stdint.h>
+#include <cstdlib>
+#include <string>
+#include <cstdint>
 
+#include "Constant.h"
 
 #ifdef __APPLE__
     //! Apple iOS Header files for OpenGLES 3.0
@@ -29,19 +28,13 @@
     #endif // End of __ANDROID__ scope
 #endif
 
-#ifdef __APPLE__
-#include "glm.hpp"
-#include "matrix_transform.hpp"
-#include "intersect.hpp"
-#include "noise.hpp"
-#include "random.hpp"
-#else
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/intersect.hpp>
 #include <glm/gtc/noise.hpp>
 #include <glm/gtc/random.hpp>
-#endif
+
+using namespace std;
 
 class GLUtils
 {
@@ -67,7 +60,7 @@ public:
     static int nextPowerOf2 (int a);
     
     // HEX String to RGB
-    //static char* hexStringToRGB(char *hexString);
+    static glm::vec3 hexStringToRGB(string hexString);
     
     
     //! Byte swap unsigned short

@@ -139,6 +139,14 @@ int GLUtils::nextPowerOf2 (int number)
     return rval;
 }
 
+glm::vec3 GLUtils::hexStringToRGB(string hexString){
+    int num = stoi(hexString,NULL,16);
+    int red = num>>16&0xFF;
+    int green = num>>8&0xFF;
+    int blue = num&0xFF;
+    return glm::vec3(red/255.0,green/255.0,blue/255.0);
+}
+
 //! Byte swap unsigned short
 uint16_t GLUtils::swap_uint16( uint16_t val )
 {

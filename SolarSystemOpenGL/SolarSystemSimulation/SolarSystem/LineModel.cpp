@@ -47,12 +47,7 @@ LineModel::LineModel( Scene* parent, Model* model, ModelType type ):Model(parent
     
     lineWidth = 1.0f;
     
-//    char *rgb = GLUtils::hexStringToRGB((char *)"0xfffff")
-    int num = std::stoi("0xFFFFF",0,16);
-    int red = num>>16&0xFF;
-    int green = num>>8&0xFF;
-    int blue = num&0xFF;
-    lineColor = glm::vec3(red/255.0,green/255.0,blue/255.0);
+    lineColor = GLUtils::hexStringToRGB("0xfffff");
     
     LoadMesh();
 }
@@ -93,57 +88,22 @@ void LineModel::LoadMesh()
 
     GLUtils::checkGlError(__func__);
     
-    //通过mapperBuffer的方式验证VertexBuffer中的数据并没有问题
-     
-     GLfloat *vtxMappedBuf;
-     
-     GLfloat vtxBuf[404] ;
-     
-     GLint bufferSize = (int)points.size() * sizeof(vec4);
-     vtxMappedBuf = (GLfloat*) glMapBufferRange ( GL_ARRAY_BUFFER, 0, (unsigned int)bufferSize , GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT );
-     if ( vtxMappedBuf == NULL ) {
-     printf( "Error mapping vertex buffer object." );
-     }
-     
-     memcpy (  vtxBuf,vtxMappedBuf, bufferSize );
-    
+//    //通过mapperBuffer的方式验证VertexBuffer中的数据并没有问题
+//
+//     GLfloat *vtxMappedBuf;
+//
+//     GLfloat vtxBuf[4*IndexCount] ;
+//
+//     GLint bufferSize = (int)points.size() * sizeof(vec4);
+//     vtxMappedBuf = (GLfloat*) glMapBufferRange ( GL_ARRAY_BUFFER, 0, (unsigned int)bufferSize , GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT );
+//     if ( vtxMappedBuf == NULL ) {
+//     printf( "Error mapping vertex buffer object." );
+//     }
+//
+//     memcpy (  vtxBuf,vtxMappedBuf, bufferSize );
     
     points.clear();
     
-//    char modelName[]={"Sphere.obj"};
-//    char fname[MAX_PATH]= {""};
-//#ifdef __IPHONE_4_0
-//    GLUtils::extractPath( getenv( "FILESYSTEM" ), fname );
-//#else
-//    strcpy( fname, "/sdcard/Models/" );
-//#endif
-//
-//    strcat( fname, modelName);
-//
-//    objMeshModel    = waveFrontObjectModel.ParseObjModel(fname);
-//    IndexCount      = waveFrontObjectModel.IndexTotal();
-//    stride          = (2 * sizeof(vec3) )+ sizeof(vec2)+ sizeof(vec4);
-//    offset          = ( GLvoid*) ( sizeof(glm::vec3) + sizeof(vec2) );
-//    offsetTexCoord  = ( GLvoid*) ( sizeof(glm::vec3) );
-//
-//
-//    // Create the VBO for our obj model vertices.
-//    glGenBuffers(1, &vertexBuffer);
-//    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-//    glBufferData(GL_ARRAY_BUFFER, objMeshModel->vertices.size() * sizeof(objMeshModel->vertices[0]), &objMeshModel->vertices[0], GL_STATIC_DRAW);
-//
-//
-//    // Create the VAO, this will store the vertex attributes into vectore state.
-//    glGenVertexArrays(1, &OBJ_VAO_Id);
-//    glBindVertexArray(OBJ_VAO_Id);
-//    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-//    glEnableVertexAttribArray(VERTEX_POSITION);
-////    glEnableVertexAttribArray(TEX_COORD);
-////    glEnableVertexAttribArray(NORMAL_POSITION);
-//    glVertexAttribPointer(VERTEX_POSITION, 3, GL_FLOAT, GL_FALSE, stride, 0);
-////    glVertexAttribPointer(TEX_COORD, 2, GL_FLOAT, GL_FALSE, stride, offsetTexCoord);
-////    glVertexAttribPointer(NORMAL_POSITION, 3, GL_FLOAT, GL_FALSE, stride, offset);
-//    glBindVertexArray(0);
 }
 /*!
 	Simple Destructor
@@ -212,13 +172,6 @@ void LineModel::Render()
         // Apply Transformation.
         glUniformMatrix4fv( MVP, 1, GL_FALSE,( float * )TransformObj->TransformGetModelViewProjectionMatrix() );
         glUniform3f(UCOLOR,lineColor.x,lineColor.y,lineColor.z);
-        
-//        glUniformMatrix4fv( MV, 1, GL_FALSE,( float * )TransformObj->TransformGetModelViewMatrix() );
-//        glUniformMatrix4fv( M, 1, GL_FALSE,( float * )TransformObj->TransformGetModelMatrix() );
-//        glm::mat4 matrix    = *(TransformObj->TransformGetModelViewMatrix());
-//        //对RBT应用的normal矩阵省略计算，直接应用linear transformation部分
-//        glm::mat3 normalMat = glm::mat3( glm::vec3(matrix[0]), glm::vec3(matrix[1]), glm::vec3(matrix[2]) );
-//        glUniformMatrix3fv( NormalMatrix, 1, GL_FALSE, (float*)&normalMat );
 
         // Bind with Vertex Array Object for OBJ
         glBindVertexArray(OBJ_VAO_Id);
