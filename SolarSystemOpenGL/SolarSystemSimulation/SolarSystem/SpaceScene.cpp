@@ -3,8 +3,9 @@
 #include "SolarSystemModel.h"
 
 int SpaceScene::planetIndex=0;
-
-float SpaceScene::inclinationAngles=0;
+float SpaceScene::inclinationAngles=-20.0f;
+float SpaceScene::fov_angles=45.0f;
+glm::vec3 SpaceScene::cameraPosition=glm::vec3 (0.0, 100.0,250.0);
 
 //prepare FBO and attach FBO/Textures
 SpaceScene::SpaceScene(std::string name, Object* parentObj):Scene(name, parentObj)
@@ -49,8 +50,8 @@ void SpaceScene::initializeScene()
     
     //最远的pluto距离太阳233
     //从太阳轨道平面平行或稍为抬高一点仰角的视线
-    viewersPerspective->SetPosition(glm::vec3 (0.0, 0.0,250.0));
-    //viewersPerspective->Rotate(glm::vec3(1,0,0), -20.0);
+    viewersPerspective->SetPosition(cameraPosition);
+    viewersPerspective->Rotate(glm::vec3(1,0,0), inclinationAngles);
     fov_angles = 20.0;
     
 //    //较大的仰角
@@ -184,22 +185,45 @@ void SpaceScene::adjustFOV(int optionIdx){
             
         case 2:
             
-            inclinationAngles +=5;
+            inclinationAngles +=2.5;
             if(inclinationAngles >= 90.0)
-                inclinationAngles = -90.0;
+                inclinationAngles = 90.0;
             
-            viewersPerspective->Rotate(glm::vec3(1,0,0), inclinationAngles * DEG_TO_RAD);
+            viewersPerspective->StrafeUpside(0.3f);
+            
+//            viewersPerspective->Reset();
+//            viewersPerspective->SetPosition(cameraPosition);
+            //viewersPerspective->Rotate(glm::vec3(1,0,0), inclinationAngles * DEG_TO_RAD);
+//            viewersPerspective->SetFov(fov_angles);
+//            viewersPerspective->SetNearPlane(1.0f);
+//            viewersPerspective->SetFarPlane(2000.0f);
             break;
             
         case 3:
-            switchPlanetViewPostion();
+            
+            inclinationAngles -=2.5;
+            if(inclinationAngles <= -90.0)
+                inclinationAngles = -90.0;
+            
+            viewersPerspective->StrafeDownside(0.3f);
+            //viewersPerspective->Rotate(glm::vec3(1,0,0), -inclinationAngles * DEG_TO_RAD);
+//            viewersPerspective->Reset();
+//            viewersPerspective->SetPosition(cameraPosition);
+//            viewersPerspective->Rotate(glm::vec3(1,0,0), inclinationAngles * DEG_TO_RAD);
+//            viewersPerspective->SetFov(fov_angles);
+//            viewersPerspective->SetNearPlane(1.0f);
+//            viewersPerspective->SetFarPlane(2000.0f);
             break;
             
         case 4:
-            viewersPerspective->StrafeLeftSide(1);
+            switchPlanetViewPostion();
             break;
             
         case 5:
+            viewersPerspective->StrafeLeftSide(1);
+            break;
+            
+        case 6:
             viewersPerspective->StrafeRightSide(1);
             break;
         
@@ -217,8 +241,14 @@ void SpaceScene::switchPlanetViewPostion(){
         planetIndex=0;
     }
     if(planetIndex==(int)renderData.size()){
-        viewersPerspective->SetPosition(glm::vec3(0,10.0,100.0));
-        viewersPerspective->SetTarget(glm::vec3(0,0,0));
+        viewersPerspective->Reset();
+        viewersPerspective->SetPosition(cameraPosition);
+        //viewersPerspective->SetTarget(glm::vec3(0,0,0));
+        viewersPerspective->SetFov(fov_angles);
+        viewersPerspective->Rotate(glm::vec3(1,0,0), inclinationAngles);
+        viewersPerspective->SetNearPlane(1.0f);
+        viewersPerspective->SetFarPlane(2000.0f);
+        
         return;
     }
     
@@ -227,6 +257,7 @@ void SpaceScene::switchPlanetViewPostion(){
     float cameraDistance = prd.distance-prd.diameter-1.5;
     glm::vec3 cameraPosition = glm::normalize(planetPosition) * cameraDistance;
     //viewersPerspective->Reset();
+    viewersPerspective->SetFov(90.0f);
     viewersPerspective->SetPosition(cameraPosition);
     viewersPerspective->SetTarget(prd.translation);
     

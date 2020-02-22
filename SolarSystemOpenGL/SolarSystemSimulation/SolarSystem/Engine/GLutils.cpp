@@ -8,6 +8,13 @@
 
 GLUtils::GLUtils() {}
 
+void GLUtils::checkGlError(const char* op) {
+    //将GL error stack中的error逐一取出，直至stack中没有error
+    for (GLint error = glGetError(); error; error= glGetError()) {
+        printf("Error Occurs, %s() glError (0x%x)\n", op, error);
+    }
+}
+
 int GLUtils::checkForOpenGLError(const char * file, int line) {
     //
     // Returns 1 if an OpenGL error occurred, 0 otherwise.

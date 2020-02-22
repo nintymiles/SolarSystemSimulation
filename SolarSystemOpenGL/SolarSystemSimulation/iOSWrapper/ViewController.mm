@@ -166,19 +166,22 @@
     AdjustFOV(0);
 }
 - (IBAction)toRightSide:(id)sender {
-    AdjustFOV(5);
+    AdjustFOV(6);
 }
 - (IBAction)adjustFOVAdversly:(id)sender {
     AdjustFOV(1);
 }
 - (IBAction)toLeftSide:(id)sender {
-    AdjustFOV(4);
+    AdjustFOV(5);
 }
 - (IBAction)switchPlanetView:(id)sender {
-    AdjustFOV(3);
+    AdjustFOV(4);
 }
 - (IBAction)adjustInclination:(id)sender {
     AdjustFOV(2);
+}
+- (IBAction)adjustInclinationAdversly:(id)sender {
+    AdjustFOV(3);
 }
 
 

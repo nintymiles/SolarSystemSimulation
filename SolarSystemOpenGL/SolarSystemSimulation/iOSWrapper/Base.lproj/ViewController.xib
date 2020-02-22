@@ -21,23 +21,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9M-y0-16K">
-                    <rect key="frame" x="20" y="38" width="86" height="20"/>
+                    <rect key="frame" x="20" y="38" width="44" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="86" id="79c-xa-jxj"/>
+                        <constraint firstAttribute="width" constant="44" id="F2f-dS-DRd"/>
                         <constraint firstAttribute="height" constant="20" id="KNx-2G-AVM"/>
                     </constraints>
-                    <state key="normal" title="TimeScale+"/>
+                    <state key="normal" title="Time+"/>
                     <connections>
                         <action selector="increaseTimescale:" destination="-1" eventType="touchUpInside" id="sN8-O0-kDV"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAD-hG-Wnx">
-                    <rect key="frame" x="116" y="38" width="86" height="20"/>
+                    <rect key="frame" x="74" y="38" width="44" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="Z8c-rw-n5g"/>
-                        <constraint firstAttribute="width" constant="86" id="emg-wn-tNF"/>
+                        <constraint firstAttribute="width" constant="44" id="keV-4v-ndw"/>
                     </constraints>
-                    <state key="normal" title="TimeScale-"/>
+                    <state key="normal" title="Time-"/>
                     <connections>
                         <action selector="decreaseTimescalse:" destination="-1" eventType="touchUpInside" id="cG5-0X-RZM"/>
                     </connections>
@@ -52,7 +52,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67e-2X-gBJ">
-                    <rect key="frame" x="212" y="38" width="40" height="20"/>
+                    <rect key="frame" x="128" y="38" width="40" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="HW1-tn-VwA"/>
                         <constraint firstAttribute="width" constant="40" id="QO0-KJ-hJQ"/>
@@ -63,7 +63,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joL-uN-In0">
-                    <rect key="frame" x="262" y="38" width="40" height="20"/>
+                    <rect key="frame" x="178" y="38" width="40" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="VX8-Eo-WuR"/>
                         <constraint firstAttribute="height" constant="20" id="lmI-lt-IPG"/>
@@ -74,20 +74,19 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBP-HM-fmy">
-                    <rect key="frame" x="20" y="63" width="60" height="20"/>
+                    <rect key="frame" x="20" y="63" width="46" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="kE7-xc-GBc"/>
-                        <constraint firstAttribute="width" constant="60" id="tv8-Jx-AU1"/>
+                        <constraint firstAttribute="width" constant="46" id="tv8-Jx-AU1"/>
                     </constraints>
-                    <state key="normal" title="Pitch+/-"/>
+                    <state key="normal" title="CamU"/>
                     <connections>
-                        <action selector="adjustInclination:" destination="-1" eventType="touchUpInside" id="LdS-kM-3ap"/>
+                        <action selector="adjustInclination:" destination="-1" eventType="touchUpInside" id="K2e-zJ-W45"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cg-B3-kJM">
-                    <rect key="frame" x="90" y="63" width="44" height="20"/>
+                    <rect key="frame" x="142" y="63" width="44" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="AZh-kD-Zxs"/>
                         <constraint firstAttribute="width" constant="44" id="fBS-Fj-gmT"/>
                         <constraint firstAttribute="height" constant="20" id="mzP-E3-aGR"/>
                     </constraints>
@@ -97,7 +96,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ag-u3-bYy">
-                    <rect key="frame" x="144" y="63" width="55" height="20"/>
+                    <rect key="frame" x="196" y="63" width="55" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="3fh-Nh-P34"/>
                         <constraint firstAttribute="width" constant="55" id="cD5-tg-8lJ"/>
@@ -108,15 +107,25 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pP-JM-Wh8">
-                    <rect key="frame" x="209" y="63" width="60" height="20"/>
+                    <rect key="frame" x="228" y="38" width="60" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="Bl4-x8-Ivw"/>
                         <constraint firstAttribute="width" constant="60" id="Byl-uj-BpO"/>
                     </constraints>
                     <state key="normal" title="ToPlanet"/>
                     <connections>
-                        <action selector="adjustInclination:" destination="-1" eventType="touchUpInside" id="ixE-gb-taC"/>
-                        <action selector="switchPlanetView:" destination="-1" eventType="touchUpInside" id="gig-EB-713"/>
+                        <action selector="switchPlanetView:" destination="-1" eventType="touchUpInside" id="h7M-7Y-usS"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUj-Uz-bdg">
+                    <rect key="frame" x="76" y="63" width="46" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="FXF-x8-b4y"/>
+                        <constraint firstAttribute="width" constant="46" id="c1G-sP-eOC"/>
+                    </constraints>
+                    <state key="normal" title="CamD"/>
+                    <connections>
+                        <action selector="adjustInclinationAdversly:" destination="-1" eventType="touchUpInside" id="Hfh-FN-vfW"/>
                     </connections>
                 </button>
             </subviews>
@@ -124,19 +133,20 @@
             <constraints>
                 <constraint firstItem="joL-uN-In0" firstAttribute="leading" secondItem="67e-2X-gBJ" secondAttribute="trailing" constant="10" id="4gp-wh-GTy"/>
                 <constraint firstItem="67e-2X-gBJ" firstAttribute="top" secondItem="2" secondAttribute="top" constant="38" id="4ny-eT-IIF"/>
-                <constraint firstItem="9pP-JM-Wh8" firstAttribute="top" secondItem="aAD-hG-Wnx" secondAttribute="bottom" constant="5" id="6SM-m3-cBh"/>
+                <constraint firstItem="9pP-JM-Wh8" firstAttribute="top" secondItem="2" secondAttribute="top" constant="38" id="8a1-UT-Ckf"/>
                 <constraint firstItem="3ag-u3-bYy" firstAttribute="top" secondItem="aAD-hG-Wnx" secondAttribute="bottom" constant="5" id="9al-6Q-w5e"/>
-                <constraint firstItem="4cg-B3-kJM" firstAttribute="leading" secondItem="yBP-HM-fmy" secondAttribute="trailing" constant="10" id="FEW-7A-O3P"/>
+                <constraint firstItem="9pP-JM-Wh8" firstAttribute="leading" secondItem="joL-uN-In0" secondAttribute="trailing" constant="10" id="Ala-JE-cJA"/>
+                <constraint firstItem="LUj-Uz-bdg" firstAttribute="leading" secondItem="yBP-HM-fmy" secondAttribute="trailing" constant="10" id="E4p-xa-3vg"/>
                 <constraint firstItem="aAD-hG-Wnx" firstAttribute="top" secondItem="2" secondAttribute="top" constant="38" id="HCR-dH-S3A"/>
                 <constraint firstItem="pFC-TU-0mg" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" id="Ihj-z1-syC"/>
                 <constraint firstItem="pFC-TU-0mg" firstAttribute="top" secondItem="2" secondAttribute="top" constant="10" id="Ijm-aT-WBW"/>
                 <constraint firstItem="pFC-TU-0mg" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" id="JvH-w5-QYM"/>
                 <constraint firstAttribute="trailing" secondItem="pFC-TU-0mg" secondAttribute="trailing" constant="20" id="Jz2-as-VNL"/>
                 <constraint firstItem="yBP-HM-fmy" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" id="KeC-Oy-KLs"/>
-                <constraint firstItem="4cg-B3-kJM" firstAttribute="top" secondItem="U9M-y0-16K" secondAttribute="bottom" constant="5" id="OMh-Og-oVi"/>
+                <constraint firstItem="4cg-B3-kJM" firstAttribute="leading" secondItem="LUj-Uz-bdg" secondAttribute="trailing" constant="20" id="Pyf-Ds-Vs2"/>
                 <constraint firstItem="3ag-u3-bYy" firstAttribute="leading" secondItem="4cg-B3-kJM" secondAttribute="trailing" constant="10" id="fQv-ds-Tjn"/>
+                <constraint firstItem="LUj-Uz-bdg" firstAttribute="top" secondItem="aAD-hG-Wnx" secondAttribute="bottom" constant="5" id="gen-nP-NtV"/>
                 <constraint firstItem="67e-2X-gBJ" firstAttribute="leading" secondItem="aAD-hG-Wnx" secondAttribute="trailing" constant="10" id="hTp-Na-e5d"/>
-                <constraint firstItem="9pP-JM-Wh8" firstAttribute="leading" secondItem="3ag-u3-bYy" secondAttribute="trailing" constant="10" id="kds-pb-LPM"/>
                 <constraint firstItem="aAD-hG-Wnx" firstAttribute="leading" secondItem="U9M-y0-16K" secondAttribute="trailing" constant="10" id="kuk-cD-rrq"/>
                 <constraint firstItem="yBP-HM-fmy" firstAttribute="top" secondItem="U9M-y0-16K" secondAttribute="bottom" constant="5" id="mwa-uZ-vbm"/>
                 <constraint firstItem="U9M-y0-16K" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" id="rcj-vH-8sX"/>

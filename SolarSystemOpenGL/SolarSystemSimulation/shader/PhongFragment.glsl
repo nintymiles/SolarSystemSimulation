@@ -60,7 +60,7 @@ void main() {
 
     vec3 lightIntensity = PhongShading(texColor);
 
-    FinalColor = vec4(lightIntensity , 1.0);
+    FinalColor = vec4(lightIntensity,1.0);
     
     return;
 }

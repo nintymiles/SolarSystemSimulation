@@ -3,7 +3,7 @@
 #include "Scene.h"
 #include "FrameBufferObject.h"
 
-static float fov_angles=45;
+
 class SpaceScene : public Scene
 {
     
@@ -48,6 +48,10 @@ private:
     static int planetIndex;
     
     static float inclinationAngles;
+    
+    static float fov_angles;
+    
+    static glm::vec3 cameraPosition;
 };
 
 #endif //SPACE_SCENE_H

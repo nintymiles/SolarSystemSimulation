@@ -110,6 +110,7 @@ private:
     
     static vector<PlanetRenderData> renderPlanetData;
     static vector<Model*> planetModels;
+    static vector<Model*> trjacetoryModels;
     
     PlanetModel* sun;
 //    PlanetModel* mercury;

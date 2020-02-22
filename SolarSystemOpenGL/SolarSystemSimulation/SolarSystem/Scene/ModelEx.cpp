@@ -53,9 +53,10 @@ void Model::Scale(float x, float y, float z )
     transformation = glm::scale(transformation, glm::vec3( x, y, z ));
 }
 
-void Model::UniformlyScale(float x){
+void Model::ScaleUniformly(float x){
     transformation = glm::scale(transformation, glm::vec3( x, x, x ));
 }
+
 void Model::RotateLocal( float angle, float x, float y, float z )
 {
     transformationLocal = glm::rotate( transformationLocal, angle, glm::vec3( x, y, z ) );
@@ -69,6 +70,11 @@ void Model::TranslateLocal(float x, float y, float z )
 void Model::ScaleLocal(float x, float y, float z )
 {
     transformationLocal = glm::scale(transformationLocal, glm::vec3( x, y, z ));
+}
+
+void Model::ScaleLocalUniformly(float scaleFactor)
+{
+    ScaleLocal(scaleFactor,scaleFactor,scaleFactor);
 }
 
 glm::mat4 Model::GetEyeCoordinatesFromRoot()

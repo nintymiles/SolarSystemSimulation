@@ -99,7 +99,7 @@ void SpaceModel::LoadMesh()
 SpaceModel::~SpaceModel()
 {
 	PROGRAM* program = NULL;
-    if ( (program = (ProgramManagerObj->Program( ( char * )"PhongShader" ))) )
+    if ( (program = (ProgramManagerObj->Program( ( char * )"SpaceShader" ))) )
 	{
 		ProgramManagerObj->RemoveProgram(program);
 	}
@@ -117,7 +117,7 @@ void SpaceModel::InitModel()
     //启动子节点的initModel
     Model::InitModel();
     
-    program = ProgramManagerObj->ProgramLoad("PhongShader", VERTEX_SHADER_PRG, FRAGMENT_SHADER_PRG);
+    program = ProgramManagerObj->ProgramLoad( (char *)"SpaceShader", VERTEX_SHADER_PRG, FRAGMENT_SHADER_PRG);
 
     this->setShader(program);
 

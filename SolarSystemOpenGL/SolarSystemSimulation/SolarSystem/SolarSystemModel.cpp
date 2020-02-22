@@ -14,10 +14,11 @@
 
 #include "StbImage.h"
 #include "perfMonitor.h"
-#include "ObjLoader.h"
 
 #include "PlanetModel.h"
 #include "SpaceModel.h"
+
+#include "LineModel.h"
 
 // Namespace used
 using std::ifstream;
@@ -28,12 +29,13 @@ static const int   SecInDay = 87600;
 static const double EarthScale = (1.0/510)*0.00002;
 static const float SpaceScale = 280.0;
 
-static float tScale = 10;
+static float tScale = 100000;
 static double startTime = OpenGL_Helper::PerfMonitor::GetCurrentTime();
 
 //the definitions of class static data member
 vector<PlanetRenderData> SolarSystemModel::renderPlanetData;
 vector<Model *> SolarSystemModel::planetModels;
+vector<Model *> SolarSystemModel::trjacetoryModels;
 
 void SolarSystemModel::adjustTimeScale(bool x,float y){
     if(x)
@@ -69,16 +71,6 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
     strcpy( fname, "/sdcard/GLPIFramework/Images/" );
 #endif
     
-//    char sunTexName[256] = {""};
-//    char spaceTexName[256] = {""};
-//    strcpy(sunTexName,fname);
-//    strcpy(spaceTexName, fname);
-//    strcat( sunTexName, "sun_texture.jpg" );
-//    strcat( spaceTexName, "galaxy_starfield.png" );
-//    //strcat( fname, "sun_texture.png" );
-//    //strcat( fname, "grass.png" );
-////    image = new PngImage();
-////    image->loadImage(fname);
     string sunTexName = string(fname) + "sun_texture.jpg";
     string spaceTexName = string(fname) + "galaxy_starfield.png";
     
@@ -111,12 +103,7 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
     space->Translate(0.0, 0.0, 0.0);
     space->SetSurfaceTextureId(spaceImage->getTextureID());
 
-    
-//    ObjLoader *bgSky = new ObjLoader( parent, this,CUBE,None );
-//    bgSky->SetMaterial(Material(MaterialSilver));
-//    bgSky->SetName(std::string("Cube"));
-//    bgSky->ScaleLocal(10.0, 0.10, 10.0);
-//    bgSky->RotateLocal(90, 0, 1, 0);
+
     
     sun = new PlanetModel( parent, this,  None );
     sun->SetMaterial(Material(sunMaterial));
@@ -127,16 +114,6 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
     sun->RotateLocal(1.0, 0.0, 1.0, 0.0);
     sun->SetSurfaceTextureId(image->getTextureID());
     
-//    mercury = new PlanetModel( parent, this,  None );
-//    mercury->SetMaterial(Material(sunMaterial));
-//    mercury->SetName(std::string("mercury"));
-//    mercury->Translate(0.0, 0.0, 0.0);
-//    mercury->SetCenter(glm::vec3(0.0, 0.0, 0.0));
-//    //sun->ScaleLocal(0.25, 0.25, 0.25);
-//    mercury->RotateLocal(1.0, 0.0, 1.0, 0.0);
-//    mercury->SetSurfaceTextureId(image->getTextureID());
-
-
     for (PlanetInfo planet:planetDat){
         PlanetRenderData prd;
 
@@ -147,7 +124,7 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
         prd.distance = planet.distance_KM * EarthScale;
         prd.period = planet.period_days * tScale;
         prd.inclination = planet.inclination * (M_PI/180);
-        prd.rotation = (2*M_PI)/(planet.rotation_days * SecInDay); ////自转的角速度，单位raidant/sec
+        prd.rotation = (2*M_PI)/(planet.rotation_days * SecInDay); //自转的角速度，单位raidant/sec
 
         prd.textureLocation = string(fname) + planet.name + "_texture.jpg";
 
@@ -155,6 +132,12 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
     }
 
     for(PlanetRenderData renderData:renderPlanetData){
+        LineModel *trjacetory = new LineModel(parent,this,None);
+        trjacetory->ScaleLocalUniformly(renderData.distance);
+        //glm默认使用degrees，只有定义了宏GLM_FORCE_RADIANS，才会强制使用radians
+        trjacetory->RotateLocal(90, 1, 0, 0);
+        trjacetory->Rotate(renderData.inclination, 1, 0, 0);
+        
         PlanetModel *star = new PlanetModel( parent, this,  None );
         star->SetMaterial(Material(planetMaterial));
         star->SetName(std::string("Planet"));

@@ -91,13 +91,14 @@ public:
     
     void Scale(float x, float y, float z );
     
-    void UniformlyScale(float x);
+    void ScaleUniformly(float scaleFactor);
 
     void RotateLocal( float angle, float x, float y, float z );
     
     void TranslateLocal(float x, float y, float z );
     
     void ScaleLocal(float x, float y, float z );
+    void ScaleLocalUniformly(float scaleFactor);
     
     glm::mat4 GetEyeCoordinatesFromRoot();
 

@@ -108,7 +108,7 @@ void PlanetModel::LoadMesh()
 PlanetModel::~PlanetModel()
 {
 	PROGRAM* program = NULL;
-    if ( (program = (ProgramManagerObj->Program( ( char * )"PhongShader" ))) )
+    if ( (program = (ProgramManagerObj->Program( (char *)"PlanetShader" ))) )
 	{
 		ProgramManagerObj->RemoveProgram(program);
 	}
@@ -124,7 +124,7 @@ PlanetModel::~PlanetModel()
 void PlanetModel::InitModel()
 {
     Model::InitModel();
-    program = ProgramManagerObj->ProgramLoad("PhongShader", VERTEX_SHADER_PRG, FRAGMENT_SHADER_PRG);
+    program = ProgramManagerObj->ProgramLoad((char *)"PlanetShader", VERTEX_SHADER_PRG, FRAGMENT_SHADER_PRG);
     
     this->setShader(program);
 

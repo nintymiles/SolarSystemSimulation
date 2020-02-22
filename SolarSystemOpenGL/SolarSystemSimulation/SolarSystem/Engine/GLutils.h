@@ -47,6 +47,8 @@ class GLUtils
 {
 public:
     GLUtils();
+    
+    static void checkGlError(const char* op);
 
     static int checkForOpenGLError(const char *, int);
     static void printGLInfo(bool printExtensions = false);
@@ -63,6 +65,9 @@ public:
     
     // Get next next immediate power of 2. 
     static int nextPowerOf2 (int a);
+    
+    // HEX String to RGB
+    //static char* hexStringToRGB(char *hexString);
     
     
     //! Byte swap unsigned short

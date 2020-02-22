@@ -188,6 +188,10 @@
 		5C489FB823FE5D57002D89D8 /* ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C489FB523FE5D57002D89D8 /* ShaderManager.cpp */; };
 		5C489FBE23FE5DE9002D89D8 /* FrameBufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C489FBD23FE5DE9002D89D8 /* FrameBufferObject.cpp */; };
 		5C5DFF2223F9FD0C00A69C40 /* TwoSidedPhongFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 5C5DFF2123F9FD0B00A69C40 /* TwoSidedPhongFragment.glsl */; };
+		5CDAFBF623FFE2A700B427C0 /* EllipseCurve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAFBF423FFE2A700B427C0 /* EllipseCurve.cpp */; };
+		5CDAFBF92400037700B427C0 /* LineModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAFBF72400037600B427C0 /* LineModel.cpp */; };
+		5CDAFBFC2400155400B427C0 /* SimpleVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 5CDAFBFA2400155400B427C0 /* SimpleVertex.glsl */; };
+		5CDAFBFD2400155400B427C0 /* SimpleFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 5CDAFBFB2400155400B427C0 /* SimpleFragment.glsl */; };
 		5CF4B71523FFAAF000FE969B /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5CF4B71123FFAAF000FE969B /* ViewController.mm */; };
 		5CF4B71623FFAAF000FE969B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF4B71423FFAAF000FE969B /* AppDelegate.m */; };
 		5CF4B71923FFAB1F00FE969B /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CF4B71723FFAB1F00FE969B /* ViewController.xib */; };
@@ -200,6 +204,7 @@
 		5CF4B72E23FFABB700FE969B /* PlanetModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF4B72923FFABB700FE969B /* PlanetModel.cpp */; };
 		5CF4B72F23FFABB700FE969B /* SpaceScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF4B72B23FFABB700FE969B /* SpaceScene.cpp */; };
 		5CF4B73023FFABB700FE969B /* SolarSystemModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF4B72C23FFABB700FE969B /* SolarSystemModel.cpp */; };
+		5CF4B73423FFB0CE00FE969B /* Curve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF4B73223FFB0CE00FE969B /* Curve.cpp */; };
 		FAF034E217DC842E0084BA22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF034E117DC842E0084BA22 /* UIKit.framework */; };
 		FAF034E417DC842E0084BA22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF034E317DC842E0084BA22 /* Foundation.framework */; };
 		FAF034E617DC842E0084BA22 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF034E517DC842E0084BA22 /* CoreGraphics.framework */; };
@@ -567,6 +572,12 @@
 		5C489FBC23FE5DE9002D89D8 /* FrameBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameBufferObject.h; path = SolarSystem/Engine/FrameBufferObject.h; sourceTree = "<group>"; };
 		5C489FBD23FE5DE9002D89D8 /* FrameBufferObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FrameBufferObject.cpp; path = SolarSystem/Engine/FrameBufferObject.cpp; sourceTree = "<group>"; };
 		5C5DFF2123F9FD0B00A69C40 /* TwoSidedPhongFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TwoSidedPhongFragment.glsl; sourceTree = "<group>"; };
+		5CDAFBF423FFE2A700B427C0 /* EllipseCurve.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EllipseCurve.cpp; sourceTree = "<group>"; };
+		5CDAFBF523FFE2A700B427C0 /* EllipseCurve.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipseCurve.h; sourceTree = "<group>"; };
+		5CDAFBF72400037600B427C0 /* LineModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LineModel.cpp; path = SolarSystem/LineModel.cpp; sourceTree = SOURCE_ROOT; };
+		5CDAFBF82400037600B427C0 /* LineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineModel.h; path = SolarSystem/LineModel.h; sourceTree = SOURCE_ROOT; };
+		5CDAFBFA2400155400B427C0 /* SimpleVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleVertex.glsl; sourceTree = "<group>"; };
+		5CDAFBFB2400155400B427C0 /* SimpleFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleFragment.glsl; sourceTree = "<group>"; };
 		5CF4B71123FFAAF000FE969B /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = iOSWrapper/ViewController.mm; sourceTree = SOURCE_ROOT; };
 		5CF4B71223FFAAF000FE969B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = iOSWrapper/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		5CF4B71323FFAAF000FE969B /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = iOSWrapper/ViewController.h; sourceTree = SOURCE_ROOT; };
@@ -586,6 +597,8 @@
 		5CF4B72A23FFABB700FE969B /* SolarSystemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SolarSystemModel.h; path = SolarSystem/SolarSystemModel.h; sourceTree = SOURCE_ROOT; };
 		5CF4B72B23FFABB700FE969B /* SpaceScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SpaceScene.cpp; path = SolarSystem/SpaceScene.cpp; sourceTree = SOURCE_ROOT; };
 		5CF4B72C23FFABB700FE969B /* SolarSystemModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SolarSystemModel.cpp; path = SolarSystem/SolarSystemModel.cpp; sourceTree = SOURCE_ROOT; };
+		5CF4B73223FFB0CE00FE969B /* Curve.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Curve.cpp; sourceTree = "<group>"; };
+		5CF4B73323FFB0CE00FE969B /* Curve.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Curve.h; sourceTree = "<group>"; };
 		FAF034DE17DC842E0084BA22 /* SolarSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolarSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF034E117DC842E0084BA22 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FAF034E317DC842E0084BA22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -614,6 +627,8 @@
 		5C01786923F691C300150B52 /* SolarSystem */ = {
 			isa = PBXGroup;
 			children = (
+				5CDAFBF72400037600B427C0 /* LineModel.cpp */,
+				5CDAFBF82400037600B427C0 /* LineModel.h */,
 				5CF4B72923FFABB700FE969B /* PlanetModel.cpp */,
 				5CF4B72823FFABB700FE969B /* PlanetModel.h */,
 				5CF4B72C23FFABB700FE969B /* SolarSystemModel.cpp */,
@@ -630,6 +645,8 @@
 		5C01787323F6E04100150B52 /* shader */ = {
 			isa = PBXGroup;
 			children = (
+				5CDAFBFB2400155400B427C0 /* SimpleFragment.glsl */,
+				5CDAFBFA2400155400B427C0 /* SimpleVertex.glsl */,
 				5C01787423F6E04100150B52 /* PhongVertex.glsl */,
 				5C01787523F6E04100150B52 /* PhongFragment.glsl */,
 				5C5DFF2123F9FD0B00A69C40 /* TwoSidedPhongFragment.glsl */,
@@ -1045,6 +1062,18 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
+		5CF4B73123FFB09900FE969B /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				5CF4B73223FFB0CE00FE969B /* Curve.cpp */,
+				5CF4B73323FFB0CE00FE969B /* Curve.h */,
+				5CDAFBF423FFE2A700B427C0 /* EllipseCurve.cpp */,
+				5CDAFBF523FFE2A700B427C0 /* EllipseCurve.h */,
+			);
+			name = Geometry;
+			path = SolarSystem/Geometry;
+			sourceTree = "<group>";
+		};
 		FA1AA16A1AD992AF00D1DB29 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -1058,6 +1087,9 @@
 		FA1AA16B1AD9933100D1DB29 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				5C28611123FE6E0900C5F7E9 /* NativeTemplate.cpp */,
+				5C28611023FE6E0900C5F7E9 /* NativeTemplate.h */,
+				5CF4B73123FFB09900FE969B /* Geometry */,
 				FA1AA16E1AD9934E00D1DB29 /* SceneGraph */,
 				FA1AA16D1AD9934700D1DB29 /* Core */,
 			);
@@ -1076,8 +1108,6 @@
 		FA1AA16D1AD9934700D1DB29 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5C28611123FE6E0900C5F7E9 /* NativeTemplate.cpp */,
-				5C28611023FE6E0900C5F7E9 /* NativeTemplate.h */,
 				5C489F9523FE5C3F002D89D8 /* ImageSupport */,
 				5C489F9123FE5BD5002D89D8 /* WaveFrontOBJ */,
 				5C489FA423FE5CD8002D89D8 /* Texture.cpp */,
@@ -1374,6 +1404,7 @@
 				5C2860B823FE627300C5F7E9 /* simd_vec4.inl in Resources */,
 				5C2860A923FE627300C5F7E9 /* optimum_pow.inl in Resources */,
 				5CF4B71C23FFAB3000FE969B /* SolarSystem-Info.plist in Resources */,
+				5CDAFBFD2400155400B427C0 /* SimpleFragment.glsl in Resources */,
 				5C057E5723F809E300AD5AC8 /* plutobump1k.jpg in Resources */,
 				5CF4B71923FFAB1F00FE969B /* ViewController.xib in Resources */,
 				5C28607B23FE627300C5F7E9 /* type_mat2x4.inl in Resources */,
@@ -1395,6 +1426,7 @@
 				5C28609023FE627300C5F7E9 /* precision.inl in Resources */,
 				5C28608123FE627300C5F7E9 /* type_mat2x2.inl in Resources */,
 				5C28609D23FE627300C5F7E9 /* constants.inl in Resources */,
+				5CDAFBFC2400155400B427C0 /* SimpleVertex.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1422,8 +1454,10 @@
 				5C2860F723FE62C300C5F7E9 /* pngwio.c in Sources */,
 				5C28610323FE62C300C5F7E9 /* pngrtran.c in Sources */,
 				5C489FA023FE5C3F002D89D8 /* StbImage.cpp in Sources */,
+				5CF4B73423FFB0CE00FE969B /* Curve.cpp in Sources */,
 				5C489F7B23FE5A57002D89D8 /* Object.cpp in Sources */,
 				5CF4B71523FFAAF000FE969B /* ViewController.mm in Sources */,
+				5CDAFBF623FFE2A700B427C0 /* EllipseCurve.cpp in Sources */,
 				5C489F9423FE5BD5002D89D8 /* WaveFrontOBJ.cpp in Sources */,
 				5CF4B71623FFAAF000FE969B /* AppDelegate.m in Sources */,
 				5C489FAF23FE5D1B002D89D8 /* Cache.cpp in Sources */,
@@ -1446,6 +1480,7 @@
 				5CF4B73023FFABB700FE969B /* SolarSystemModel.cpp in Sources */,
 				5C489F8323FE5A90002D89D8 /* RendererEx.cpp in Sources */,
 				5C28610F23FE6DC800C5F7E9 /* ModelEx.cpp in Sources */,
+				5CDAFBF92400037700B427C0 /* LineModel.cpp in Sources */,
 				5C489F7E23FE5A68002D89D8 /* Scene.cpp in Sources */,
 				5C28610023FE62C300C5F7E9 /* pngmem.c in Sources */,
 				5C489F9F23FE5C3F002D89D8 /* Image.cpp in Sources */,
