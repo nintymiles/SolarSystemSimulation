@@ -19,26 +19,12 @@ public:
 
     void render();
     void resize( int w, int h);
-//    Camera* GetLightPerspective();
+    
     void adjustFOV(int optionIdx);
     
     void switchPlanetViewPostion();
     
 private:
-    /**
-     FBO Scene object.
-     */
-    FrameBufferObjectSurface* fbo;
-
-    /**
-     Depth texture buffer.
-     */
-    Texture depthTexture;
-    
-    /**
-     Camera view from light's perspective.
-     */
-    Camera* lightPerspective;
     
     /**
      Actual camera view.

@@ -7,38 +7,14 @@ float SpaceScene::inclinationAngles=-20.0f;
 float SpaceScene::fov_angles=45.0f;
 glm::vec3 SpaceScene::cameraPosition=glm::vec3 (0.0, 100.0,250.0);
 
-//prepare FBO and attach FBO/Textures
 SpaceScene::SpaceScene(std::string name, Object* parentObj):Scene(name, parentObj)
 {
-//    //Create the Frame buffer object
-//    fbo = new FrameBufferObjectSurface();
-//
-//    // Generate the FBO ID
-//    fbo->GenerateFBO();
-//
-//    depthTexture.generateTexture2D(GL_TEXTURE_2D, fbo->GetWidth(), fbo->GetHeight(), GL_DEPTH_COMPONENT32F, GL_FLOAT, GL_DEPTH_COMPONENT,0,true,0,0,GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE,GL_NEAREST,GL_NEAREST );
-//
-//    // Attach the Depth Buffer to FBO's depth attachment
-//    fbo->AttachTexture(depthTexture, GL_DEPTH_ATTACHMENT);
-//
-//    // Check the status of the FBO
-//    fbo->CheckFboStatus();
-    
-    lightPerspective    = NULL;
+
     viewersPerspective  = NULL;
 }
 
 void SpaceScene::initializeScene()
 {
-//    // Create camera view from lights perspective in order to capture depth buffer.
-//    lightPerspective = new Camera("lightPerspective", this);
-//    // clear color/depth buffer from viewer's perspective point
-//    lightPerspective->SetClearBitFieldMask(GL_DEPTH_BUFFER_BIT);
-//    // set position of camera to the position of first light source
-//    lightPerspective->SetPosition(glm::vec3(this->lights.at(0)->position));
-//    lightPerspective->SetTarget(glm::vec3 (0.0, 0.0,0.0));
-//    this->addCamera(lightPerspective);
-    
     // Create scene's camera view.
     viewersPerspective = new Camera("Main Camera", this);
     viewersPerspective->SetClearBitFieldMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -98,46 +74,6 @@ void SpaceScene::resize( int w, int h)
  */
 void SpaceScene::render()
 {
-//    // Set Framebuffer to the FBO
-//    //绑定要输出的FBO，一个渲染输出通道
-//    //如果需要离屏输出，则定义一个FrameBufferObject，在渲染前执行push操作，渲染后执行pop操作即可
-//    fbo->Push();
-//
-//    // Render the scene from lights perspective
-//    //基本的渲染视角变幻矩阵设置
-//    lightPerspective->Render();
-//
-//    // Enable the back face culling.
-//    glEnable(GL_CULL_FACE);                 // Important to avoid culling artefacts
-//    glCullFace(GL_FRONT);
-//
-//    // Enable the polygon offset filling, in order to avoid the artefact on the object backside faces.
-//    glEnable(GL_POLYGON_OFFSET_FILL);
-//    glPolygonOffset(2.5f, 20.0f);
-//
-//    for( int i=0; i<models.size();  i++ ){
-//        currentModel = models.at(i);
-//        if(!currentModel){
-//            continue;
-//        }
-//
-//        //这个框架将每个Model作为一个基本渲染单位，Model中包括对应的渲染基本的几何数据，shader配置
-//        //当然也可以独立设置material，texture等数据，然后在model加入到场景中，场景在加入到渲染器中
-//        //就可以实现复杂场景的渲染，虽然整体比较松散，但是易于理解，相比FCG中的封装更让人感觉轻快，其实现
-//        //接近底层。
-//        // Set LIGHT PASS (PASS ONE) to True, this will avoid fragment
-//        // shader execution and only records depth buffer.
-//        ((ObjLoader*)currentModel)->SetLightPass(true);
-//        currentModel->Render();
-//    }
-//    // Reset to previous frame buffer
-//    fbo->Pop();
-
-    // Bind the texture unit 0 to depth texture of FBO
-//    glActiveTexture (GL_TEXTURE0);
-//    glBindTexture(GL_TEXTURE_2D, depthTexture.getTextureID());
-
-    
     // View the scene from camera
     viewersPerspective->Render();
     
@@ -262,9 +198,4 @@ void SpaceScene::switchPlanetViewPostion(){
     viewersPerspective->SetTarget(prd.translation);
     
 }
-
-//Camera* SpaceScene::GetLightPerspective()
-//{
-//    return lightPerspective;
-//}
 
