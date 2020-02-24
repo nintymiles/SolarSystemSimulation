@@ -16,8 +16,8 @@
 #include "RendererEx.h"
 
 #include "PlanetModel.h"
+#include "StbImage.h"
 
-#include "PngImage.h"
 #include "Event.h"
 
 #include <string>

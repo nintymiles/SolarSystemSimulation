@@ -16,7 +16,7 @@
 #include "RendererEx.h"
 
 #include <string>
-#include "PngImage.h"
+#include "StbImage.h"
 #include "Event.h"
 
 using namespace std;

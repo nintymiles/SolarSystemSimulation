@@ -12,7 +12,6 @@
 #include "Cache.h"
 #include "constant.h"
 
-#include "StbImage.h"
 #include "perfMonitor.h"
 
 #include "PlanetModel.h"

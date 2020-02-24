@@ -5,7 +5,7 @@
 #else
 #endif
 #include "Constant.h"
-#include <zlib.h>
+//#include <zlib.h>
 //#include <unzip.h>
 //#include <zutil.h>
 #define MAX_PATH	256
