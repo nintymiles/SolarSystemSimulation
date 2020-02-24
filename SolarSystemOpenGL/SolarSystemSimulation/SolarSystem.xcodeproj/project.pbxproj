@@ -40,6 +40,8 @@
 		5C057E6923F809E300AD5AC8 /* moon_texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C057E5423F809E300AD5AC8 /* moon_texture.jpg */; };
 		5C057E6A23F809E300AD5AC8 /* earthmap1k.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C057E5523F809E300AD5AC8 /* earthmap1k.jpg */; };
 		5C057E6B23F809E400AD5AC8 /* saturnringcolor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C057E5623F809E300AD5AC8 /* saturnringcolor.jpg */; };
+		5C25B1432403A7D80043DE59 /* RingGeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C25B1412403A7D80043DE59 /* RingGeometry.cpp */; };
+		5C25B1462403B2EC0043DE59 /* RingModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C25B1452403B2EC0043DE59 /* RingModel.cpp */; };
 		5C28606D23FE627300C5F7E9 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5C285F7623FE627300C5F7E9 /* CMakeLists.txt */; };
 		5C28606E23FE627300C5F7E9 /* func_noise.inl in Resources */ = {isa = PBXBuildFile; fileRef = 5C285F8523FE627300C5F7E9 /* func_noise.inl */; };
 		5C28606F23FE627300C5F7E9 /* func_exponential.inl in Resources */ = {isa = PBXBuildFile; fileRef = 5C285F8823FE627300C5F7E9 /* func_exponential.inl */; };
@@ -227,6 +229,10 @@
 		5C057E5423F809E300AD5AC8 /* moon_texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = moon_texture.jpg; sourceTree = "<group>"; };
 		5C057E5523F809E300AD5AC8 /* earthmap1k.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = earthmap1k.jpg; sourceTree = "<group>"; };
 		5C057E5623F809E300AD5AC8 /* saturnringcolor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = saturnringcolor.jpg; sourceTree = "<group>"; };
+		5C25B1412403A7D80043DE59 /* RingGeometry.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RingGeometry.cpp; sourceTree = "<group>"; };
+		5C25B1422403A7D80043DE59 /* RingGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RingGeometry.h; sourceTree = "<group>"; };
+		5C25B1442403B2EC0043DE59 /* RingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RingModel.h; path = SolarSystem/RingModel.h; sourceTree = SOURCE_ROOT; };
+		5C25B1452403B2EC0043DE59 /* RingModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RingModel.cpp; path = SolarSystem/RingModel.cpp; sourceTree = SOURCE_ROOT; };
 		5C285F6E23FE627300C5F7E9 /* vec4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec4.hpp; sourceTree = "<group>"; };
 		5C285F6F23FE627300C5F7E9 /* integer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = integer.hpp; sourceTree = "<group>"; };
 		5C285F7023FE627300C5F7E9 /* vector_relational.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_relational.hpp; sourceTree = "<group>"; };
@@ -586,6 +592,8 @@
 				5CF4B72823FFABB700FE969B /* PlanetModel.h */,
 				5CF4B72C23FFABB700FE969B /* SolarSystemModel.cpp */,
 				5CF4B72A23FFABB700FE969B /* SolarSystemModel.h */,
+				5C25B1452403B2EC0043DE59 /* RingModel.cpp */,
+				5C25B1442403B2EC0043DE59 /* RingModel.h */,
 				5CF4B72623FFABB700FE969B /* SpaceModel.cpp */,
 				5CF4B72523FFABB700FE969B /* SpaceModel.h */,
 				5CF4B72B23FFABB700FE969B /* SpaceScene.cpp */,
@@ -984,6 +992,8 @@
 		5CF4B73123FFB09900FE969B /* Geometry */ = {
 			isa = PBXGroup;
 			children = (
+				5C25B1412403A7D80043DE59 /* RingGeometry.cpp */,
+				5C25B1422403A7D80043DE59 /* RingGeometry.h */,
 				5CF4B73223FFB0CE00FE969B /* Curve.cpp */,
 				5CF4B73323FFB0CE00FE969B /* Curve.h */,
 				5CDAFBF423FFE2A700B427C0 /* EllipseCurve.cpp */,
@@ -1373,6 +1383,7 @@
 				5C489FAE23FE5D1B002D89D8 /* GLutils.cpp in Sources */,
 				5C489FA123FE5C3F002D89D8 /* CompressedImage.cpp in Sources */,
 				5C489FA823FE5CFD002D89D8 /* Ray.cpp in Sources */,
+				5C25B1462403B2EC0043DE59 /* RingModel.cpp in Sources */,
 				5C489FA523FE5CD8002D89D8 /* Texture.cpp in Sources */,
 				5CF4B72D23FFABB700FE969B /* SpaceModel.cpp in Sources */,
 				5C489F9023FE5B56002D89D8 /* Camera.cpp in Sources */,
@@ -1381,6 +1392,7 @@
 				5CF4B73023FFABB700FE969B /* SolarSystemModel.cpp in Sources */,
 				5C489F8323FE5A90002D89D8 /* RendererEx.cpp in Sources */,
 				5C28610F23FE6DC800C5F7E9 /* ModelEx.cpp in Sources */,
+				5C25B1432403A7D80043DE59 /* RingGeometry.cpp in Sources */,
 				5CDAFBF92400037700B427C0 /* LineModel.cpp in Sources */,
 				5C489F7E23FE5A68002D89D8 /* Scene.cpp in Sources */,
 				5C489F9F23FE5C3F002D89D8 /* Image.cpp in Sources */,

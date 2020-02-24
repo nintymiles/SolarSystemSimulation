@@ -26,17 +26,6 @@ StbImage::~StbImage(void)
 	}
 }
 
-void loadJPGImage(char* fileName){
-    int width, height, channels;
-    unsigned char *img = stbi_load(fileName, &width, &height, &channels, 0);
-    if(img == NULL) {
-        printf("Error in loading the image\n");
-        exit(1);
-    }
-    
-    printf("Loaded image with a width of %dpx, a height of %dpx and %d channels\n", width, height, channels);
-}
-
 unsigned char* StbImage::read_image_file(char* file_name)
 {
     int width, height, channels;
@@ -46,7 +35,7 @@ unsigned char* StbImage::read_image_file(char* file_name)
         exit(1);
     }
     
-    printf("Loaded image with a width of %dpx, a height of %dpx and %d channels\n", width, height, channels);
+    printf("\nLoaded image with a width of %dpx, a height of %dpx and %d channels\n", width, height, channels);
     
     /**# stb_image的代码阅读所获的信息
      * stbi__context包含了图像文件的各种信息，其中图像缓存信息位于

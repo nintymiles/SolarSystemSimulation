@@ -16,6 +16,7 @@
 
 #include "PlanetModel.h"
 #include "SpaceModel.h"
+#include "RingModel.h"
 
 #include "LineModel.h"
 
@@ -113,6 +114,17 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
     sun->RotateLocal(1.0, 0.0, 1.0, 0.0);
     sun->SetSurfaceTextureId(image->getTextureID());
     
+    //环状的绘制有问题，需要不断改进。
+//    string ringTexName = string(fname) + "saturnringcolor.jpg";
+//    StbImage *ringImage = new StbImage();
+//    image->loadImage((char *)ringTexName.c_str());
+//    RingModel *ring = new RingModel( parent, this,  None );
+//    ring->SetMaterial(MaterialCopper);
+//    ring->SetName(std::string("Ring"));
+//    ring->Scale(10, 10, 10);
+//    ring->Translate(0.0, 0.0, 0.0);
+//    ring->SetSurfaceTextureId(ringImage->getTextureID());
+    
     for (PlanetInfo planet:planetDat){
         PlanetRenderData prd;
 
@@ -136,6 +148,15 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
         //glm默认使用degrees，只有定义了宏GLM_FORCE_RADIANS，才会强制使用radians
         trjacetory->RotateLocal(90, 1, 0, 0);
         trjacetory->Rotate(renderData.inclination, 1, 0, 0);
+        
+        if(renderData.name == "saturn"){
+//            RingModel *ring = new RingModel( parent, this,  None );
+//            ring->SetMaterial(spaceMaterial);
+//            ring->SetName(std::string("Ring"));
+//            ring->Scale(10, 10, 10);
+//            ring->Translate(0.0, 0.0, 0.0);
+//            ring->SetSurfaceTextureId(image->getTextureID());
+        }
         
         PlanetModel *star = new PlanetModel( parent, this,  None );
         star->SetMaterial(Material(planetMaterial));
