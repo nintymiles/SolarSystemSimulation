@@ -112,14 +112,14 @@ vector<IntersectionData> Model::rayCast(RayCaster *rayCaster){
 //            material.pickingAlpha = 0.5;
 //            object->SetMaterial(material);
 //        }
-        Material material = Material(objMaterial);
-        if(interData.size()>0){
-            if(material.pickingAlpha==1.0)
-                material.pickingAlpha = 0.5;
-            else
-                material.pickingAlpha = 1.0;
-            object->SetMaterial(material);
-        }
+//        Material material = Material(objMaterial);
+//        if(interData.size()>0){
+//            if(material.pickingAlpha==1.0)
+//                material.pickingAlpha = 0.5;
+//            else
+//                material.pickingAlpha = 1.0;
+//            object->SetMaterial(material);
+//        }
         
         for(auto data:interData)
             intersects.push_back(data);

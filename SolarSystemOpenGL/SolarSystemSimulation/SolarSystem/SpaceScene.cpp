@@ -214,13 +214,13 @@ void SpaceScene::TouchEventDown(float x, float y){
     
     for(IntersectionData interData:intersects){
         const Material objMaterial = interData.object->GetMaterial();
-//        Material material = Material(objMaterial);
-//        if(material.pickingAlpha==1.0)
-//            material.pickingAlpha = 0.5;
-//        else
-//            material.pickingAlpha = 1.0;
-//        
-//        interData.object->SetMaterial(material);
+        Material material = Material(objMaterial);
+        if(material.pickingAlpha==1.0)
+            material.pickingAlpha = 0.5;
+        else
+            material.pickingAlpha = 1.0;
+        
+        interData.object->SetMaterial(material);
         
     }
     
