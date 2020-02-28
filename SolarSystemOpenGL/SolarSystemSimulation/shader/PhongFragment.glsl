@@ -65,14 +65,14 @@ void main() {
     if(PickingAlpha==0.0)
         pAlpha=1.0;
    
-//    //test code
-//    if(pAlpha==0.5){
-//        FinalColor = vec4(1.0,0.0,0.0,pAlpha);
-//    }else{
-//        FinalColor = vec4(lightIntensity,pAlpha);
-//    }
+    //test code
+    if(pAlpha==0.5){
+        FinalColor = vec4(lightIntensity,pAlpha)+vec4(0.5,0,0,0);
+    }else{
+        FinalColor = vec4(lightIntensity,pAlpha);
+    }
     
-    FinalColor = vec4(lightIntensity,pAlpha);
+//    FinalColor = vec4(lightIntensity,pAlpha);
 
 }
 

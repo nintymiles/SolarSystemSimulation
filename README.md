@@ -5,5 +5,13 @@ I have finsihed basic rendering of sun and nine planet models,and trajectories o
 
 ![ss_screenshot1](Docs/images/ss_screenshot1.jpg)
 
+## Features
+
+ 1. basic planet rendering with real planet size scales and textures.
+ 2. actual revolution and rotation data for motion.
+ 3. circle (not real ellipse) trajectories rendering.
+ 4. time scaling and simple camera control (gesture supporting later).
+ 5. a simple raycast picking implementation (for only ray-sphere intersection, to support more accurate ray-triangle intersection later).
+	![ss_screenshot2](Docs/images/ss_screenshot2.jpg)
 
 
