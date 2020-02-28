@@ -98,9 +98,33 @@ void Model::Render()
     }
 }
 
-bool Model::IntersectWithRay(Ray ray0, glm::vec3& intersectionPoint)
-{
-    
+//执行射线投射动作，使用raster发出射线，然后计算相交。
+//这个方法是raycast的核心，每个对象都会调用
+vector<IntersectionData> Model::rayCast(RayCaster *rayCaster){
+    vector<IntersectionData> intersects;
+    //render sub-objects recursively
+    for(int i =0; i<childList.size(); i++){
+        Model *object = dynamic_cast<Model*>(childList.at(i));
+        vector<IntersectionData> interData = object->rayCast(rayCaster);
+        const Material objMaterial = object->GetMaterial();
+//        Material material = Material(objMaterial);
+//        if(interData.size()>0){
+//            material.pickingAlpha = 0.5;
+//            object->SetMaterial(material);
+//        }
+        Material material = Material(objMaterial);
+        if(interData.size()>0){
+            if(material.pickingAlpha==1.0)
+                material.pickingAlpha = 0.5;
+            else
+                material.pickingAlpha = 1.0;
+            object->SetMaterial(material);
+        }
+        
+        for(auto data:interData)
+            intersects.push_back(data);
+    }
+    return intersects;
 }
 
 void Model::TouchEventDown( float x, float y )

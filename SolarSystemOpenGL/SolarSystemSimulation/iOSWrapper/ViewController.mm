@@ -21,6 +21,7 @@
 
 @end
 
+
 @implementation ViewController
 
 - (void)dealloc
@@ -69,7 +70,7 @@
 	UITouch *touch;
 	CGPoint pos;
 	
-    float scale = [UIScreen mainScreen].scale;
+    float scale = [UIScreen mainScreen].nativeScale;
 	for( touch in touches )
 	{
 		pos = [ touch locationInView:self.view ];
@@ -82,7 +83,7 @@
 	UITouch *touch;
 	CGPoint pos;
 	
-    float scale = [UIScreen mainScreen].scale;
+    float scale = [UIScreen mainScreen].nativeScale;
 	for( touch in touches )
 	{
 		pos = [ touch locationInView:self.view ];
@@ -96,7 +97,7 @@
 	UITouch *touch;
 	CGPoint pos;
 	
-    float scale = [UIScreen mainScreen].scale;
+    float scale = [UIScreen mainScreen].nativeScale;
 	for( touch in touches )
 	{
 		pos = [ touch locationInView:self.view ];

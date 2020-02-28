@@ -6,6 +6,9 @@
 #include "Camera.h"
 #include "Light.h"
 #include "Event.h"
+
+#include "RayCaster.h"
+
 #include <vector>
 
 class Renderer;
@@ -119,6 +122,8 @@ protected:
     
     // Current Model in use
     Model* currentModel;
+    
+    RayCaster* rayCaster;
 };
 
 #endif

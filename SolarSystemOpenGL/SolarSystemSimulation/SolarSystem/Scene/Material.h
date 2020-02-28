@@ -70,6 +70,7 @@ class Material
 public:
     glm::vec4 ambient, diffuse, specular;
     GLfloat shiness;
+    GLfloat pickingAlpha;
     std::string name;
     
     MaterialType typeOfMaterial;

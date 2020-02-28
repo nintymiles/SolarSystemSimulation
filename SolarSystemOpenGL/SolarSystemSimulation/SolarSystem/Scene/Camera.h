@@ -113,6 +113,9 @@ public:
     glm::mat4 GetViewMatrix() const;
     glm::mat4 GetProjectionMatrix() const;
     
+    CameraType GetCameraType() const;
+    ViewPort GetViewPortParam() const;
+    
     void Clear();
 };
 

@@ -300,6 +300,14 @@ glm::mat4 Camera::GetProjectionMatrix() const
     }
 }
 
+CameraType Camera::GetCameraType() const{
+    return type;
+}
+
+ViewPort Camera::GetViewPortParam() const{
+    return viewPortParam;
+}
+
 void Camera::Clear()
 {
     glClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w );

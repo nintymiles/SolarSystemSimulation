@@ -6,6 +6,7 @@ Material::Material(glm::vec4  ambient, glm::vec4 diffuse, glm::vec4 specular, GL
     diffuse     = diffuse;
     specular    = specular;
     shiness     = shiness;
+    pickingAlpha = 1.0f;
 }
 
 Material::Material(const Material& mat)
@@ -14,6 +15,7 @@ Material::Material(const Material& mat)
     diffuse     = glm::vec4 (mat.diffuse);
     specular    = glm::vec4 (mat.specular);
     shiness     = mat.shiness;
+    pickingAlpha = mat.pickingAlpha;
 }
 
 Material& Material::operator = (const Material & mat)
@@ -22,6 +24,7 @@ Material& Material::operator = (const Material & mat)
     diffuse     = glm::vec4 (mat.diffuse);
     specular    = glm::vec4 (mat.specular);
     shiness     = mat.shiness;
+    pickingAlpha = mat.pickingAlpha;
     return *this;
 }
 
@@ -103,4 +106,5 @@ Material::Material(MaterialType type) {
             shiness     = 0.0;
         }
     }
+    pickingAlpha = 1.0f;
 }

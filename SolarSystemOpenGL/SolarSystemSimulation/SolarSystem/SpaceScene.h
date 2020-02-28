@@ -24,6 +24,9 @@ public:
     
     void switchPlanetViewPostion();
     
+    void TouchEventDown( float a, float b );
+    
+    
 private:
     
     /**

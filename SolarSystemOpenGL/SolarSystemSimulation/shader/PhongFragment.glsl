@@ -14,6 +14,7 @@ uniform vec3    LightAmbient;
 uniform vec3    LightSpecular;
 uniform vec3    LightDiffuse;
 uniform float   ShininessFactor;
+uniform float   PickingAlpha;
 
 uniform vec3    LightPosition;
 
@@ -59,10 +60,20 @@ void main() {
     vec3 texColor = texture(planetTexture,textureCoord).xyz;
 
     vec3 lightIntensity = PhongShading(texColor);
-
-    FinalColor = vec4(lightIntensity,1.0);
     
-    return;
+    float pAlpha = PickingAlpha;
+    if(PickingAlpha==0.0)
+        pAlpha=1.0;
+   
+//    //test code
+//    if(pAlpha==0.5){
+//        FinalColor = vec4(1.0,0.0,0.0,pAlpha);
+//    }else{
+//        FinalColor = vec4(lightIntensity,pAlpha);
+//    }
+    
+    FinalColor = vec4(lightIntensity,pAlpha);
+
 }
 
 

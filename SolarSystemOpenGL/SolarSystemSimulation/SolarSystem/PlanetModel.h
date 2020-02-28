@@ -38,6 +38,12 @@ public:
 
     // Destructor for PLANETMODEL
     virtual ~PlanetModel();
+    
+    virtual bool isPickingEnabled(){
+        return true;
+    }
+    
+    virtual vector<IntersectionData> rayCast(RayCaster *rayCaster);
 
     // Initialize our Model class
     void InitModel();
@@ -51,7 +57,6 @@ public:
     // Apply material on the object
     void ApplyMaterial();
 
-    bool IntersectWithRay(Ray ray0, glm::vec3& intersectionPoint);
     
     // Set the light pass
     void SetLightPass(bool flag);
@@ -100,7 +105,7 @@ private:
     
     // Char variables is used to store uniform location values
     // Material variables
-    char MaterialAmbient, MaterialSpecular, MaterialDiffuse, MaterialShininess;
+    char MaterialAmbient, MaterialSpecular, MaterialDiffuse, MaterialShininess, MaterialPickingAlpha;
     
     // Light variables
     char LightAmbient,LightSpecular, LightDiffuse, LightPosition;

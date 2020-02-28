@@ -9,6 +9,7 @@
 #include "constant.h"
 
 #include "SpaceScene.h"
+#include "RayCaster.h"
 
 //#import <fstream>
 using namespace glm;
@@ -49,6 +50,10 @@ PlanetModel::PlanetModel( Scene* parent, Model* model, ModelType type ):Model(pa
 
     glEnable	( GL_DEPTH_TEST );
     
+    glEnable(GL_BLEND);
+    // Enable blending
+    glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+    
     transformation[0][0] = transformation[1][1] = transformation[2][2] = transformation[3][3] = 1.0;
     LoadMesh();
 }
@@ -77,7 +82,9 @@ void PlanetModel::LoadMesh()
     offset          = ( GLvoid*) ( sizeof(glm::vec3) + sizeof(vec2) );
     offsetTexCoord  = ( GLvoid*) ( sizeof(glm::vec3) );
     
-    
+    for(Vertex v:objMeshModel->vertices){
+        points.push_back(v.position);
+    }
     // Create the VBO for our obj model vertices.
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
@@ -136,6 +143,7 @@ void PlanetModel::InitModel()
     MaterialSpecular = GetUniform(program,(char*)"MaterialSpecular");
     MaterialDiffuse  = GetUniform(program,(char*)"MaterialDiffuse");
     MaterialShininess= GetUniform(program,(char*)"ShininessFactor");
+    MaterialPickingAlpha = GetUniform(program,(char*)"PickingAlpha");
     
     // Get Light property uniform variables
     LightAmbient    = GetUniform(program,(char*)"LightAmbient");
@@ -253,20 +261,80 @@ void PlanetModel::ApplyMaterial()
     }
     
     if ( MaterialDiffuse >= 0 ){
-        glm::vec3 color = glm::vec3(1.0, 1.0, 1.0);
         glUniform3f( MaterialDiffuse, materialObj.diffuse.r, materialObj.diffuse.g, materialObj.diffuse.b );
     }
     
     if ( MaterialShininess >= 0 ){
         glUniform1f(MaterialShininess, materialObj.shiness);
     }
+    
+    if ( MaterialPickingAlpha >= 0 ){
+        glUniform1f(MaterialPickingAlpha, materialObj.pickingAlpha);
+    }
 }
 
+//执行射线投射动作，使用raster发出射线，然后计算相交。
+//这个方法是raycast的核心，每个对象都会调用
+vector<IntersectionData> PlanetModel::rayCast(RayCaster *rayCaster){
+    
+    if(!isPickingEnabled()) return{};
+    
+    TransformObj->TransformPushMatrix(); // Parent Child Level
+    ApplyModelsParentsTransformation();
 
-bool PlanetModel::IntersectWithRay(Ray ray0, glm::vec3& intersectionPoint)
-{
-    return false;
+    TransformObj->TransformPushMatrix(); // Local Level
+    ApplyModelsLocalTransformation();
+    //Material material = material;
+    mat4 matrixWorld = *TransformObj->TransformGetModelMatrix();
+    TransformObj->TransformPopMatrix(); // Local Level
+    TransformObj->TransformPopMatrix(); // Parent Level
+        
+    //if ( material == undefined ) return;
+        
+    // Checking boundingSphere distance to ray
+//    if(this->boundingSphere == NULL){
+        this->boundingSphere = new Sphere();
+        this->boundingSphere->setFromPoints(points);
+//    }
+    
+    //将BV副本转换为world coordinate
+    Sphere *sphere = new Sphere();
+    sphere->center = boundingSphere->center;
+    sphere->radius = boundingSphere->radius;
+
+    sphere->applyMatrix4(matrixWorld);
+    
+    // 先进行了ray-sphere相交检测
+    Ray *ray = rayCaster->ray;
+    vector<vec3> intersectPoints = ray->intersectSphere(sphere);
+    if (intersectPoints.size()==0) return {};
+    
+    IntersectionData idata;
+    idata.intersectionPointWorld=intersectPoints[0];
+    idata.distance = 0;
+    idata.object = this;
+
+//    //先计算object matrix的反转，用于将射线转换为object coordinate
+//    mat4 inverseMatrix = glm::inverse(matrixWorld);
+//    Ray *rayObj = new Ray();
+//    rayObj->origin = ray->origin;
+//    rayObj->direction = ray->direction;
+//
+//    rayObj->applyMatrix4(inverseMatrix);
+//
+//    // Check boundingBox before continuing
+//    // 计算ray-triangle前先检查ray-box相交作保守型检测，用于优化
+////    if(this->boundingBox == NULL){
+//        this->boundingBox = new Box();
+//        this->boundingBox->setFromPoints(points);
+////    }
+//    intersectPoints = ray->intersectBox(boundingBox);
+//    if (intersectPoints.size()==0) return {};
+
+           
+    return {idata};
 }
+
 
 void PlanetModel::TouchEventDown( float x, float y )
 {

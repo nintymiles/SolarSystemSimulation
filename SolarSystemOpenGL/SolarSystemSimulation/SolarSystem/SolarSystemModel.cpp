@@ -160,7 +160,7 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
         
         PlanetModel *star = new PlanetModel( parent, this,  None );
         star->SetMaterial(Material(planetMaterial));
-        star->SetName(std::string("Planet"));
+        star->SetName(renderData.name);
 
         //渲染数据中的变换数据在每次绘制前都要设置一次
 //        star->Scale(renderData.diameter, renderData.diameter, renderData.diameter);

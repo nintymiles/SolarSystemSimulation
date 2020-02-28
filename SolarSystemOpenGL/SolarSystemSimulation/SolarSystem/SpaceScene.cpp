@@ -52,6 +52,8 @@ void SpaceScene::initializeScene()
     //viewersPerspective->SetTarget(glm::vec3 (4.0, 0.0, 0.0));
     this->addCamera(viewersPerspective);
     Scene::initializeScene();
+    
+    rayCaster = new RayCaster();
 }
 
 SpaceScene::~SpaceScene(void)
@@ -196,6 +198,31 @@ void SpaceScene::switchPlanetViewPostion(){
     viewersPerspective->SetFov(90.0f);
     viewersPerspective->SetPosition(cameraPosition);
     viewersPerspective->SetTarget(prd.translation);
+    
+}
+
+void SpaceScene::TouchEventDown(float x, float y){
+    Scene::TouchEventDown(x, y);
+    rayCaster->setFromCamera(vec3(x,y,0.0f), viewersPerspective);
+    
+    vector<IntersectionData> intersects;
+    for( int i=0; i<models.size(); i++ ){
+        vector<IntersectionData> interData = models.at(i)->rayCast(rayCaster);
+        for(auto data:interData)
+            intersects.push_back(data);
+    }
+    
+    for(IntersectionData interData:intersects){
+        const Material objMaterial = interData.object->GetMaterial();
+//        Material material = Material(objMaterial);
+//        if(material.pickingAlpha==1.0)
+//            material.pickingAlpha = 0.5;
+//        else
+//            material.pickingAlpha = 1.0;
+//        
+//        interData.object->SetMaterial(material);
+        
+    }
     
 }
 
