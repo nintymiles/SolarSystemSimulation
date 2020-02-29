@@ -55,7 +55,7 @@ PlanetModel::PlanetModel( Scene* parent, Model* model, ModelType type ):Model(pa
     
     //default sphere radius
     planetRadius = 1.0f;
-    
+        
     LoadMesh();
 }
 

@@ -14,7 +14,7 @@
 
 Renderer*   graphicsEngine;         // Graphics Engine
 Scene*      customScene;            // CustomScene object
-Light*      globalLight;            // Global Light
+//Light*      globalLight;            // Global Light
 Model*      customModel;            // CustomModel object
 
 bool GraphicsInit()
@@ -22,14 +22,15 @@ bool GraphicsInit()
     graphicsEngine  = new Renderer();
     customScene     = new SpaceScene("SpaceScene", graphicsEngine);
     
-    // Set the lights
-    globalLight     = new Light(Material(MaterialWhite), glm::vec4(0.00001, 0.0, 0.0, 1.0));
-    customScene->addLight(globalLight);
+//    // Set the lights
+//    globalLight     = new Light(Material(MaterialWhite), glm::vec4(0.00001, 0.0, 0.0, 1.0));
+//    customScene->addLight(globalLight);
+//    
+//    //场景中仅被添加了一个customModel，但是customModel中包含了其它子model。CustomModel是顶级对象
+//    // Camera's are added in the CustomScene's constructor
+//    customModel     = new SolarSystemModel( customScene, NULL, None );
+//    customScene->addModel(customModel);
     
-    //场景中仅被添加了一个customModel，但是customModel中包含了其它子model。CustomModel是顶级对象
-    // Camera's are added in the CustomScene's constructor
-    customModel     = new SolarSystemModel( customScene, NULL, None );
-    customScene->addModel(customModel);
     graphicsEngine->initializeScenes();
 
     return true;

@@ -1,7 +1,6 @@
 #ifndef SPACE_SCENE_H
 #define SPACE_SCENE_H
 #include "Scene.h"
-#include "FrameBufferObject.h"
 
 
 class SpaceScene : public Scene
@@ -26,6 +25,8 @@ public:
     
     void TouchEventDown( float a, float b );
     
+    void switchPlanetView(string planetName);
+    void switchSolarSystemView();
     
 private:
     
@@ -33,6 +34,7 @@ private:
      Actual camera view.
      */
     Camera* viewersPerspective;
+    Camera* planerViewPerspective;
     
     static int planetIndex;
     
@@ -41,6 +43,12 @@ private:
     static float fov_angles;
     
     static glm::vec3 cameraPosition;
+    
+    Light* globalLight; // Global Light
+    
+    Model* solarSystemModel;
+    Model* planetViewModel;
+    bool planetViewFlag;
 };
 
 #endif //SPACE_SCENE_H

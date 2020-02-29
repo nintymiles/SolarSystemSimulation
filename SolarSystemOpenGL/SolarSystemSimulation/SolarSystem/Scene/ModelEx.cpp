@@ -8,6 +8,7 @@ bool Model::setShader(PROGRAM* shaderProgram)
 	return false;
 }
 
+//模型构造函数必须传入scene对象，是因为要获得programObj，transformationObj。
 Model::Model(Scene*	handler, Model* model, ModelType type, std::string objectName):Object(objectName, model)
 {
     SceneHandler        = handler;

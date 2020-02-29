@@ -41,7 +41,6 @@ class Model : public Object, public GestureEvent,public RayCast{
 
 public:
     
-    
     //构造函数
     Model(Scene* SceneHandler, Model* model, ModelType type,std::string objectName = "");
     

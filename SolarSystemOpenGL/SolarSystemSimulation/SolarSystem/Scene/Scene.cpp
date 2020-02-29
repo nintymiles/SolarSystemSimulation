@@ -232,12 +232,12 @@ void Scene::initializeModels()
  */
 void Scene::render()
 {
-    for(int j=0; j<cameras.size(); j++){
-        
-        currentCamera = cameras.at(j);
-        if(!currentCamera) {
-            continue;
-        }
+//    for(int j=0; j<cameras.size(); j++){
+//
+//        currentCamera = cameras.at(j);
+//        if(!currentCamera) {
+//            continue;
+//        }
         currentCamera->Render();
     
         for( int i=0; i<models.size();  i++ ){
@@ -248,7 +248,7 @@ void Scene::render()
                 
             currentModel->Render();
         }
-    }
+//    }
     
     // On Finish set the current camera and model to NULL
     currentCamera   = NULL;

@@ -174,6 +174,7 @@
 		5C86B62B2406A560006A31BB /* RayCaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C86B6292406A560006A31BB /* RayCaster.cpp */; };
 		5C86B62E2406BC38006A31BB /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C86B62C2406BC38006A31BB /* Sphere.cpp */; };
 		5C86B6312406BD53006A31BB /* Box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C86B62F2406BD53006A31BB /* Box.cpp */; };
+		5C86B634240A6845006A31BB /* PlanetViewModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C86B632240A6845006A31BB /* PlanetViewModel.cpp */; };
 		5CDAFBF623FFE2A700B427C0 /* EllipseCurve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAFBF423FFE2A700B427C0 /* EllipseCurve.cpp */; };
 		5CDAFBF92400037700B427C0 /* LineModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAFBF72400037600B427C0 /* LineModel.cpp */; };
 		5CDAFBFC2400155400B427C0 /* SimpleVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 5CDAFBFA2400155400B427C0 /* SimpleVertex.glsl */; };
@@ -541,6 +542,8 @@
 		5C86B62D2406BC38006A31BB /* Sphere.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Sphere.h; path = SolarSystem/Engine/Sphere.h; sourceTree = "<group>"; };
 		5C86B62F2406BD53006A31BB /* Box.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Box.cpp; path = SolarSystem/Engine/Box.cpp; sourceTree = "<group>"; };
 		5C86B6302406BD53006A31BB /* Box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Box.h; path = SolarSystem/Engine/Box.h; sourceTree = "<group>"; };
+		5C86B632240A6845006A31BB /* PlanetViewModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlanetViewModel.cpp; path = SolarSystem/PlanetViewModel.cpp; sourceTree = SOURCE_ROOT; };
+		5C86B633240A6845006A31BB /* PlanetViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetViewModel.h; path = SolarSystem/PlanetViewModel.h; sourceTree = SOURCE_ROOT; };
 		5CDAFBF423FFE2A700B427C0 /* EllipseCurve.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EllipseCurve.cpp; sourceTree = "<group>"; };
 		5CDAFBF523FFE2A700B427C0 /* EllipseCurve.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipseCurve.h; sourceTree = "<group>"; };
 		5CDAFBF72400037600B427C0 /* LineModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LineModel.cpp; path = SolarSystem/LineModel.cpp; sourceTree = SOURCE_ROOT; };
@@ -599,6 +602,8 @@
 				5CDAFBF82400037600B427C0 /* LineModel.h */,
 				5CF4B72923FFABB700FE969B /* PlanetModel.cpp */,
 				5CF4B72823FFABB700FE969B /* PlanetModel.h */,
+				5C86B632240A6845006A31BB /* PlanetViewModel.cpp */,
+				5C86B633240A6845006A31BB /* PlanetViewModel.h */,
 				5CF4B72C23FFABB700FE969B /* SolarSystemModel.cpp */,
 				5CF4B72A23FFABB700FE969B /* SolarSystemModel.h */,
 				5C25B1452403B2EC0043DE59 /* RingModel.cpp */,
@@ -1385,6 +1390,7 @@
 				5C489FB823FE5D57002D89D8 /* ShaderManager.cpp in Sources */,
 				5C489FB623FE5D57002D89D8 /* ProgramManager.cpp in Sources */,
 				5CF4B71E23FFAB4A00FE969B /* main.m in Sources */,
+				5C86B634240A6845006A31BB /* PlanetViewModel.cpp in Sources */,
 				5C489FBE23FE5DE9002D89D8 /* FrameBufferObject.cpp in Sources */,
 				5C489FA023FE5C3F002D89D8 /* StbImage.cpp in Sources */,
 				5CF4B73423FFB0CE00FE969B /* Curve.cpp in Sources */,

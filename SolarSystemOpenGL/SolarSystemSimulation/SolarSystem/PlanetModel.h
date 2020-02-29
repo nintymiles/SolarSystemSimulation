@@ -112,6 +112,7 @@ private:
     // Light variables
     char LightAmbient,LightSpecular, LightDiffuse, LightPosition;
     glm::mat4 lightBiasMat;
+
 };
 
 

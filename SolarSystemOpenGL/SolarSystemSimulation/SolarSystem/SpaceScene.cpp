@@ -1,6 +1,7 @@
 #include "SpaceScene.h"
 #include "PlanetModel.h"
 #include "SolarSystemModel.h"
+#include "PlanetViewModel.h"
 
 int SpaceScene::planetIndex=0;
 float SpaceScene::inclinationAngles=-20.0f;
@@ -9,8 +10,9 @@ glm::vec3 SpaceScene::cameraPosition=glm::vec3 (0.0, 100.0,250.0);
 
 SpaceScene::SpaceScene(std::string name, Object* parentObj):Scene(name, parentObj)
 {
-
     viewersPerspective  = NULL;
+    planerViewPerspective = NULL;
+    planetViewFlag = false;
 }
 
 void SpaceScene::initializeScene()
@@ -30,9 +32,15 @@ void SpaceScene::initializeScene()
     viewersPerspective->Rotate(glm::vec3(1,0,0), inclinationAngles);
     fov_angles = 20.0;
     
+    
 //    //较大的仰角
 //    viewersPerspective->SetPosition(glm::vec3 (0.0, 35.0,30.0));
 //    viewersPerspective->Rotate(glm::vec3(1,0,0), -45.0);
+//    fov_angles = 45.0;
+    
+    //viewersPerspective->Rotate(glm::vec3(1,0,0), -15.0);
+    //viewersPerspective->Rotate(glm::vec3(1,0,0), -90.0);
+    //viewersPerspective->SetTarget(glm::vec3 (4.0, 0.0, 0.0));
     
     //仿threejs配置
 //    viewersPerspective->SetPosition(glm::vec3 (0.0, 100.0,500.0));
@@ -41,19 +49,37 @@ void SpaceScene::initializeScene()
     //near/far平面必须设置，否则在缩放fov时会出现投射问题
     viewersPerspective->SetNearPlane(1.0);
     viewersPerspective->SetFarPlane(2000.0);
-    
-    
-    //viewersPerspective->Rotate(glm::vec3(1,0,0), -15.0);
-    
-    
     viewersPerspective->SetFov(fov_angles);
+    
 
-    //viewersPerspective->Rotate(glm::vec3(1,0,0), -90.0);
-    //viewersPerspective->SetTarget(glm::vec3 (4.0, 0.0, 0.0));
+    
+    //to remove,redudant code
     this->addCamera(viewersPerspective);
-    Scene::initializeScene();
+    
+    planerViewPerspective = new Camera("Planet Camera", this);
+    planerViewPerspective->SetClearBitFieldMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    planerViewPerspective->SetPosition(cameraPosition);
+    planerViewPerspective->Rotate(glm::vec3(1,0,0), inclinationAngles);
+    
+    planerViewPerspective->SetNearPlane(1.0);
+    planerViewPerspective->SetFarPlane(2000.0);
+    planerViewPerspective->SetFov(45.0);
+    this->addCamera(planerViewPerspective);
+    
+    
+    // Set the lights
+    globalLight = new Light(Material(MaterialWhite), glm::vec4(0.00001, 0.0, 0.0, 1.0));
+    this->addLight(globalLight);
+    
+    //场景中仅被添加了一个customModel，但是customModel中包含了其它子model。CustomModel是顶级对象
+    // Camera's are added in the CustomScene's constructor
+    solarSystemModel = new SolarSystemModel(this, NULL, None);
+    this->addModel(solarSystemModel);
     
     rayCaster = new RayCaster();
+    
+    //Scene父类初始化场景必须放到后边，因为其中有初始化模型的调用
+    Scene::initializeScene();
 }
 
 SpaceScene::~SpaceScene(void)
@@ -62,7 +88,7 @@ SpaceScene::~SpaceScene(void)
 
 void SpaceScene::resize( int w, int h)
 {
-//    lightPerspective->Viewport(0, 0, w, h);
+    planerViewPerspective->Viewport(0, 0, w, h);
     viewersPerspective->Viewport(0, 0, w, h);
     Scene::resize(w, h);
 }
@@ -76,9 +102,17 @@ void SpaceScene::resize( int w, int h)
  */
 void SpaceScene::render()
 {
-    viewersPerspective->SetClearColor();
-    // View the scene from camera
-    viewersPerspective->Render();
+//    viewersPerspective->SetClearColor();
+//    // View the scene from camera
+//    viewersPerspective->Render();
+    if(!planetViewFlag){
+        currentCamera = viewersPerspective;
+    }else{
+        currentCamera = planerViewPerspective;
+    }
+    
+    currentCamera->SetClearColor();
+    
     
     return Scene::render();
     
@@ -223,9 +257,36 @@ void SpaceScene::TouchEventDown(float x, float y){
         else
             material.pickingAlpha = 1.0;
         
+        if(!planetViewFlag){
+            planetViewFlag = true;
+            switchPlanetView(interData.object->GetName());
+        }else{
+            planetViewFlag = false;
+            switchSolarSystemView();
+        }
+        
         interData.object->SetMaterial(material);
         
     }
     
+}
+
+void SpaceScene::switchPlanetView(string planetName){
+    planetViewModel = new PlanetViewModel(this,NULL,None,planetName);
+    removeModel(solarSystemModel);
+    addModel(planetViewModel);
+    //planetViewModel->InitModel();
+    viewersPerspective->SetFov(45.0);
+    
+    Scene::initializeScene();
+}
+
+void SpaceScene::switchSolarSystemView(){
+    removeModel(planetViewModel);
+    addModel(solarSystemModel);
+    //planetViewModel->InitModel();
+    viewersPerspective->SetFov(fov_angles);
+    
+    Scene::initializeScene();
 }
 
