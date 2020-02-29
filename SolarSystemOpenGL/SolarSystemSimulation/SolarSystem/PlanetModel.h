@@ -57,6 +57,8 @@ public:
     // Apply material on the object
     void ApplyMaterial();
 
+    // set raidus
+    void SetPlanetRadius(float radius=1.0){planetRadius = radius;}
     
     // Set the light pass
     void SetLightPass(bool flag);
@@ -96,12 +98,14 @@ private:
     // Vertex Texture offset in interleaved array.
     GLvoid* offsetTexCoord;
     char MVP, MV, M, SHADOW_MAT, SHADOW_TEX;
-    char IS_LIGHT_PASS;
+//    char IS_LIGHT_PASS;
     GLint NormalMatrix;
     GLuint vertexBuffer;
-    bool isLightPass;
+//    bool isLightPass;
     
     GLuint surfaceTextureId;
+    
+    float planetRadius;
     
     // Char variables is used to store uniform location values
     // Material variables

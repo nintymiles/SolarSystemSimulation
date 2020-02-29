@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/SpaceScene.cpp"
-            timestampString = "604570900.847993"
+            timestampString = "604641417.149755"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "SpaceScene::adjustFOV(int optionIdx)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/PlanetModel.cpp"
-            timestampString = "604570900.84816"
+            timestampString = "604641417.14992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "PlanetModel::rayCast(RayCaster *rayCaster)"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/Engine/RayCaster.h"
-            timestampString = "604570900.848246"
+            timestampString = "604641417.150377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/Engine/Geometry/Ray.cpp"
-            timestampString = "604570900.84833"
+            timestampString = "604641417.15046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "Ray::intersectSphere(Sphere* sphere)"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/Engine/Geometry/Ray.cpp"
-            timestampString = "604570900.848405"
+            timestampString = "604641417.150537"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "Ray::intersectSphere(Sphere* sphere)"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/SpaceScene.cpp"
-            timestampString = "604570900.848475"
+            timestampString = "604641417.150609"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "SpaceScene::TouchEventDown(float x, float y)"
             landmarkType = "7">
             <Locations>
@@ -234,12 +234,12 @@
                   moduleName = "SolarSystem"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/afighter/Documents/Github_Projects/SolarSystemSimulation/SolarSystemOpenGL/SolarSystemSimulation/SolarSystem/SpaceScene.cpp"
-                  timestampString = "604569562.0681"
+                  timestampString = "604641417.262922"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "211"
-                  endingLineNumber = "211"
-                  offsetFromSymbolStart = "248">
+                  startingLineNumber = "214"
+                  endingLineNumber = "214"
+                  offsetFromSymbolStart = "304">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -249,12 +249,12 @@
                   moduleName = "SolarSystem"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/afighter/Documents/Github_Projects/SolarSystemSimulation/SolarSystemOpenGL/SolarSystemSimulation/SolarSystem/SpaceScene.cpp"
-                  timestampString = "604569562.069685"
+                  timestampString = "604641417.264258"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "211"
-                  endingLineNumber = "211"
-                  offsetFromSymbolStart = "300">
+                  startingLineNumber = "214"
+                  endingLineNumber = "214"
+                  offsetFromSymbolStart = "374">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/SolarSystemModel.cpp"
-            timestampString = "604570900.848534"
+            timestampString = "604641417.150673"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "SolarSystemModel::Render()"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,11 +282,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/PlanetModel.cpp"
-            timestampString = "604570900.84858"
+            timestampString = "604641417.150725"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "PlanetModel::Render()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SolarSystem/Engine/RayCaster.h"
+            timestampString = "604641417.151008"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "setFromCamera(vec3 screenPos,Camera* camera)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SolarSystem/PlanetModel.cpp"
+            timestampString = "604641417.15106"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "PlanetModel::Render()"
             landmarkType = "7">
          </BreakpointContent>

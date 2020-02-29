@@ -39,7 +39,9 @@ vec3 Ray::at(float t){
     return origin+direction*t;
 }
 
-
+//木星之类的大球体选择不精确，是因为形成木星球体的方式为对标准球形几何体的顶点进行伸缩
+//故而当从几何体顶点确定球体直径时，所获得的只是标准球体的直径
+//要解决这个问题，需要在planetmodel中加入行星的半径信息，可计算BV（sphere）时使用半径信息计算真实行星半径
 vector<vec3> Ray::intersectSphere(Sphere* sphere){
     
     vec3 v1;

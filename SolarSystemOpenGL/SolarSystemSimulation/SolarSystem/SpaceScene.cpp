@@ -76,29 +76,32 @@ void SpaceScene::resize( int w, int h)
  */
 void SpaceScene::render()
 {
+    viewersPerspective->SetClearColor();
     // View the scene from camera
     viewersPerspective->Render();
     
-    // Cull the back face of the objects.
-    glCullFace(GL_BACK);
+    return Scene::render();
     
-    // Disable the polygon offset filling
-    glDisable(GL_POLYGON_OFFSET_FILL);
+//    // Cull the back face of the objects.
+//    glCullFace(GL_BACK);
+//
+//    // Disable the polygon offset filling
+//    glDisable(GL_POLYGON_OFFSET_FILL);
     
-    // Render the models
-    for( int i=0; i<models.size();  i++ ){
-        currentModel = models.at(i);
-        if(!currentModel){
-            continue;
-        }
-        
-        // PASS TWO => Normal scene rendering
-        // Set LIGHT PASS to False, render the scene using fragment shader.
-        //((PlanetModel*)currentModel)->SetLightPass(false);
-        
-        currentModel->Render();
-    }
-    return;
+//    // Render the models
+//    for( int i=0; i<models.size();  i++ ){
+//        currentModel = models.at(i);
+//        if(!currentModel){
+//            continue;
+//        }
+//
+//        // PASS TWO => Normal scene rendering
+//        // Set LIGHT PASS to False, render the scene using fragment shader.
+//        //((PlanetModel*)currentModel)->SetLightPass(false);
+//
+//        currentModel->Render();
+//    }
+//    return;
 }
 
 void SpaceScene::adjustFOV(int optionIdx){

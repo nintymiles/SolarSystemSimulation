@@ -55,6 +55,10 @@ PlanetModel::PlanetModel( Scene* parent, Model* model, ModelType type ):Model(pa
     glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
     
     transformation[0][0] = transformation[1][1] = transformation[2][2] = transformation[3][3] = 1.0;
+    
+    //default sphere radius
+    planetRadius = 1.0f;
+    
     LoadMesh();
 }
 
@@ -156,7 +160,7 @@ void PlanetModel::InitModel()
     M               = GetUniform( program, ( char* )"ModelMatrix" );
     NormalMatrix    = GetUniform( program, ( char* )"NormalMatrix");
     SHADOW_TEX      = GetUniform( program, ( char* )"planetTexture" );
-    IS_LIGHT_PASS   = GetUniform( program, ( char* )"isLightPerspectivePass" );
+//    IS_LIGHT_PASS   = GetUniform( program, ( char* )"isLightPerspectivePass" );
     
     
     glUniform1i(SHADOW_TEX, 0);
@@ -180,9 +184,9 @@ void PlanetModel::Render()
 //    glm::mat4 shadowCoord = lightBiasMat * lP->GetProjectionMatrix() * lP->GetViewMatrix();
 //    glUniformMatrix4fv( SHADOW_MAT, 1, GL_FALSE,( float * )&shadowCoord );
 
-    if ( IS_LIGHT_PASS >= 0 ){
-        isLightPass ? glUniform1i(IS_LIGHT_PASS, 1) : glUniform1i(IS_LIGHT_PASS, 0);
-    }
+//    if ( IS_LIGHT_PASS >= 0 ){
+//        isLightPass ? glUniform1i(IS_LIGHT_PASS, 1) : glUniform1i(IS_LIGHT_PASS, 0);
+//    }
     
     // Bind the texture unit 0 to surface texture
     glActiveTexture (GL_TEXTURE0);
@@ -193,6 +197,8 @@ void PlanetModel::Render()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
     
+    ScaleLocalUniformly(planetRadius);
+    
     
     TransformObj->TransformPushMatrix(); // Parent Child Level
     ApplyModelsParentsTransformation();
@@ -200,6 +206,7 @@ void PlanetModel::Render()
     if(isVisible){
         TransformObj->TransformPushMatrix(); // Local Level
         ApplyModelsLocalTransformation();
+        
         
         // Apply Transformation.
         glUniformMatrix4fv( MVP, 1, GL_FALSE,( float * )TransformObj->TransformGetModelViewProjectionMatrix() );
@@ -293,8 +300,10 @@ vector<IntersectionData> PlanetModel::rayCast(RayCaster *rayCaster){
         
     // Checking boundingSphere distance to ray
 //    if(this->boundingSphere == NULL){
-        this->boundingSphere = new Sphere();
-        this->boundingSphere->setFromPoints(points);
+    this->boundingSphere = new Sphere();
+    this->boundingSphere->setFromPoints(points);
+    //由于每个行星model都是从标准球体建立，从几何数据无法计算出真实的半径，所以需要从半径信息计算
+    this->boundingSphere->radius *= planetRadius;
 //    }
     
     //将BV副本转换为world coordinate
@@ -353,14 +362,14 @@ void PlanetModel::AdjustTimeScale( bool x, float y){
     
 }
 
-void PlanetModel::SetLightPass(bool flag)
-{
-    isLightPass = flag;
-
-    for(int i =0; i<GetChildren()->size(); i++){
-        dynamic_cast<PlanetModel*>(GetChildren()->at(i))->SetLightPass( flag );
-    }
-}
+//void PlanetModel::SetLightPass(bool flag)
+//{
+//    isLightPass = flag;
+//
+//    for(int i =0; i<GetChildren()->size(); i++){
+//        dynamic_cast<PlanetModel*>(GetChildren()->at(i))->SetLightPass( flag );
+//    }
+//}
 
 void PlanetModel::SetSurfaceTextureId(GLuint surfaceTextureId){
     this->surfaceTextureId = surfaceTextureId;

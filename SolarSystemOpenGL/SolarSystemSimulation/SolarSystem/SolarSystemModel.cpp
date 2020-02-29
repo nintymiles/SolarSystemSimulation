@@ -161,6 +161,12 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
         PlanetModel *star = new PlanetModel( parent, this,  None );
         star->SetMaterial(Material(planetMaterial));
         star->SetName(renderData.name);
+        
+        if(renderData.name == "pluto"){
+            star->SetPlanetRadius(renderData.diameter*10);
+        }else{
+            star->SetPlanetRadius(renderData.diameter);
+        }
 
         //渲染数据中的变换数据在每次绘制前都要设置一次
 //        star->Scale(renderData.diameter, renderData.diameter, renderData.diameter);
@@ -230,10 +236,10 @@ void SolarSystemModel::Render()
         //重设planet model的变换数据
         planetModel->Reset();
 
-        if(renderData.name == "pluto"){
-            planetModel->ScaleLocal(renderData.diameter*10, renderData.diameter*10, renderData.diameter*10);
-        }else
-            planetModel->ScaleLocal(renderData.diameter, renderData.diameter, renderData.diameter);
+//        if(renderData.name == "pluto"){
+//            planetModel->ScaleLocal(renderData.diameter*10, renderData.diameter*10, renderData.diameter*10);
+//        }else
+//            planetModel->ScaleLocal(renderData.diameter, renderData.diameter, renderData.diameter);
 
         //planetModel->Translate(renderData.distance, 0.0, 0.0);
         //planetModel->SetCenter(glm::vec3(10.0, 2.0, 0.0));
