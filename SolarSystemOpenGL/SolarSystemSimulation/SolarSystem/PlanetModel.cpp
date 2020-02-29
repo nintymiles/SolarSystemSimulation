@@ -32,9 +32,6 @@ using namespace glm;
 using std::ifstream;
 using std::ostringstream;
 
-// Model Name Array
-//#define STRING_LENGTH 100
-//char ModelNames[][STRING_LENGTH]= {"SemiHollowCylinder.obj"/*0*/,"Sphere.obj"/*1*/, "Torus.obj"/*2*/, "Monkey.obj"/*3*/, "IsoSphere.obj"/*4*/, "Cone.obj"/*5*/,"CubeWithNormal.obj"/*6*/};
 /*!
 	Simple Default Constructor
 
@@ -159,11 +156,9 @@ void PlanetModel::InitModel()
     MV              = GetUniform( program, ( char* )"ModelViewMatrix" );
     M               = GetUniform( program, ( char* )"ModelMatrix" );
     NormalMatrix    = GetUniform( program, ( char* )"NormalMatrix");
-    SHADOW_TEX      = GetUniform( program, ( char* )"planetTexture" );
-//    IS_LIGHT_PASS   = GetUniform( program, ( char* )"isLightPerspectivePass" );
+    TEX      = GetUniform( program, ( char* )"planetTexture" );
     
-    
-    glUniform1i(SHADOW_TEX, 0);
+    glUniform1i(TEX, 0);
 
     return;
 }
@@ -180,13 +175,6 @@ void PlanetModel::Render()
     glUseProgram(program->ProgramID);
     ApplyMaterial();
     ApplyLight();
-//    Camera* lP = ((CustomScene*)this->SceneHandler)->GetLightPerspective();
-//    glm::mat4 shadowCoord = lightBiasMat * lP->GetProjectionMatrix() * lP->GetViewMatrix();
-//    glUniformMatrix4fv( SHADOW_MAT, 1, GL_FALSE,( float * )&shadowCoord );
-
-//    if ( IS_LIGHT_PASS >= 0 ){
-//        isLightPass ? glUniform1i(IS_LIGHT_PASS, 1) : glUniform1i(IS_LIGHT_PASS, 0);
-//    }
     
     // Bind the texture unit 0 to surface texture
     glActiveTexture (GL_TEXTURE0);
@@ -361,15 +349,6 @@ void PlanetModel::TouchEventRelease( float x, float y )
 void PlanetModel::AdjustTimeScale( bool x, float y){
     
 }
-
-//void PlanetModel::SetLightPass(bool flag)
-//{
-//    isLightPass = flag;
-//
-//    for(int i =0; i<GetChildren()->size(); i++){
-//        dynamic_cast<PlanetModel*>(GetChildren()->at(i))->SetLightPass( flag );
-//    }
-//}
 
 void PlanetModel::SetSurfaceTextureId(GLuint surfaceTextureId){
     this->surfaceTextureId = surfaceTextureId;

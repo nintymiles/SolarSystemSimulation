@@ -97,11 +97,9 @@ private:
 
     // Vertex Texture offset in interleaved array.
     GLvoid* offsetTexCoord;
-    char MVP, MV, M, SHADOW_MAT, SHADOW_TEX;
-//    char IS_LIGHT_PASS;
+    char MVP, MV, M, SHADOW_MAT, TEX;
     GLint NormalMatrix;
     GLuint vertexBuffer;
-//    bool isLightPass;
     
     GLuint surfaceTextureId;
     
