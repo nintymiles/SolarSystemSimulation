@@ -27,7 +27,7 @@ using namespace glm;
 
 static const int   SecInDay = 87600;
 static const double EarthScale = (1.0/510)*0.00002;
-static const float SpaceScale = 280.0;
+static const float SpaceScale = 300.0;
 
 static float tScale = 100000;
 static double startTime = OpenGL_Helper::PerfMonitor::GetCurrentTime();

@@ -11,7 +11,7 @@ glm::vec3 SpaceScene::cameraPosition=glm::vec3 (0.0, 100.0,250.0);
 SpaceScene::SpaceScene(std::string name, Object* parentObj):Scene(name, parentObj)
 {
     viewersPerspective  = NULL;
-    planerViewPerspective = NULL;
+    planetViewPerspective = NULL;
     planetViewFlag = false;
 }
 
@@ -56,15 +56,15 @@ void SpaceScene::initializeScene()
     //to remove,redudant code
     this->addCamera(viewersPerspective);
     
-    planerViewPerspective = new Camera("Planet Camera", this);
-    planerViewPerspective->SetClearBitFieldMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    planerViewPerspective->SetPosition(cameraPosition);
-    planerViewPerspective->Rotate(glm::vec3(1,0,0), inclinationAngles);
+    planetViewPerspective = new Camera("Planet Camera", this);
+    planetViewPerspective->SetClearBitFieldMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    planetViewPerspective->SetPosition(cameraPosition);
+    planetViewPerspective->Rotate(glm::vec3(1,0,0), inclinationAngles);
     
-    planerViewPerspective->SetNearPlane(1.0);
-    planerViewPerspective->SetFarPlane(2000.0);
-    planerViewPerspective->SetFov(45.0);
-    this->addCamera(planerViewPerspective);
+    planetViewPerspective->SetNearPlane(1.0);
+    planetViewPerspective->SetFarPlane(2000.0);
+    planetViewPerspective->SetFov(45.0);
+    this->addCamera(planetViewPerspective);
     
     
     // Set the lights
@@ -90,7 +90,8 @@ SpaceScene::~SpaceScene(void)
 
 void SpaceScene::resize( int w, int h)
 {
-    planerViewPerspective->Viewport(0, 0, w, h);
+    //it is very important to set camera's viewport due to projection matrix
+    planetViewPerspective->Viewport(0, 0, w, h);
     viewersPerspective->Viewport(0, 0, w, h);
     Scene::resize(w, h);
 }
@@ -110,7 +111,7 @@ void SpaceScene::render()
     if(!planetViewFlag){
         currentCamera = viewersPerspective;
     }else{
-        currentCamera = planerViewPerspective;
+        currentCamera = planetViewPerspective;
     }
     
     currentCamera->SetClearColor();
@@ -145,8 +146,8 @@ void SpaceScene::adjustFOV(int optionIdx){
         case 0:
         
             fov_angles +=2.5;
-            if(fov_angles>=100)
-                fov_angles = 100;
+            if(fov_angles>=120)
+                fov_angles = 120;
         
             viewersPerspective->SetFov(fov_angles);
             break;
@@ -242,7 +243,12 @@ void SpaceScene::switchPlanetViewPostion(){
 
 void SpaceScene::TouchEventDown(float x, float y){
     Scene::TouchEventDown(x, y);
-    rayCaster->setFromCamera(vec3(x,y,0.0f), viewersPerspective);
+    //set raycaster using the corresponding camera on that rendering scene
+    if(planetViewFlag){
+        rayCaster->setFromCamera(vec3(x,y,0.0f), planetViewPerspective);
+    }else{
+        rayCaster->setFromCamera(vec3(x,y,0.0f), viewersPerspective);
+    }
     
     vector<IntersectionData> intersects;
     for( int i=0; i<models.size(); i++ ){

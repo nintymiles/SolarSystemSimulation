@@ -34,7 +34,7 @@ private:
      Actual camera view.
      */
     Camera* viewersPerspective;
-    Camera* planerViewPerspective;
+    Camera* planetViewPerspective;
     
     static int planetIndex;
     
