@@ -48,9 +48,9 @@ float PlanetViewModel::retrieveTimeScale(){
     return tScale;
 }
 
-vector<PlanetRenderData> PlanetViewModel::retrieveRenderPlanetData(){
-    return renderPlanetData;
-}
+//vector<PlanetRenderData> PlanetViewModel::retrieveRenderPlanetData(){
+//    return renderPlanetData;
+//}
 
 /*!
 	Simple Default Constructor
@@ -80,11 +80,11 @@ PlanetViewModel::PlanetViewModel( Scene* parent, Model* model, ModelType type,st
     image->loadImage((char *)sunTexName.c_str());
     
     
-    Material planetMaterial(MaterialNone);
+    planetMaterial = Material(MaterialNone);
     planetMaterial.shiness = 0.0001;
     planetMaterial.ambient = glm::vec4(0.1,0.1,0.1,1);
     
-    Material sunMaterial(MaterialNone);
+    sunMaterial = Material(MaterialNone);
     sunMaterial.shiness = 69.0; //不愧是sun
     sunMaterial.ambient = glm::vec4(0.5,0.2,0.1,1);
     
@@ -107,14 +107,13 @@ PlanetViewModel::PlanetViewModel( Scene* parent, Model* model, ModelType type,st
 
 
     aPlanet = new PlanetModel( parent, this,  None );
-    aPlanet->SetMaterial(Material(planetMaterial));
     aPlanet->Translate(0.0, 0.0, 0.0);
     aPlanet->SetCenter(glm::vec3(0.0, 0.0, 0.0));
     //sun->ScaleLocal(0.25, 0.25, 0.25);
     //aPlanet->RotateLocal(1.0, 0.0, 1.0, 0.0);
     
 
-    Image *startSurfaceImage = new StbImage();
+    starSurfaceImage = new StbImage();
     for (PlanetInfo planet:planetDat){
         PlanetRenderData prd;
 
@@ -132,28 +131,33 @@ PlanetViewModel::PlanetViewModel( Scene* parent, Model* model, ModelType type,st
         renderPlanetData.push_back(prd);
     }
 
-    for(PlanetRenderData renderData:renderPlanetData){
-        if(renderData.name == planetName){
-            startSurfaceImage->loadImage((char *)renderData.textureLocation.c_str());
-            aPlanet->SetSurfaceTextureId(startSurfaceImage->getTextureID());
-            aPlanet->SetPlanetRadius(50.0);
-            aPlanet->SetName(planetName);
+    LoadPlanet(planetName);
+
+}
+
+void PlanetViewModel::LoadPlanet(string planetName){
+    aPlanet->SetPlanetRadius(50.0);
+    if(planetName == "Sun"){
+        aPlanet->SetMaterial(Material(sunMaterial));
+        aPlanet->SetSurfaceTextureId(image->getTextureID());
+        aPlanet->SetName("Sun");
+    }else{
+        for(PlanetRenderData renderData:renderPlanetData){
+            if(renderData.name == planetName){
+                aPlanet->SetMaterial(Material(planetMaterial));
+                image->loadImage((char *)renderData.textureLocation.c_str());
+                starSurfaceImage->loadImage((char *)renderData.textureLocation.c_str());
+                aPlanet->SetSurfaceTextureId(starSurfaceImage->getTextureID());
+                aPlanet->SetName(planetName);
+            }
         }
     }
-
 }
 
 
-/*!
-	Simple Destructor
-
-	\param[in] None.
-	\return None
-
-*/
-PlanetViewModel::~PlanetViewModel()
-{
-}
+//PlanetViewModel::~PlanetViewModel()
+//{
+//}
 
 /*!
 	Initialize the scene, reserve shaders, compile and cache program

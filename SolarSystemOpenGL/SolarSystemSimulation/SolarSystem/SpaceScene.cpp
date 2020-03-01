@@ -76,6 +76,8 @@ void SpaceScene::initializeScene()
     solarSystemModel = new SolarSystemModel(this, NULL, None);
     this->addModel(solarSystemModel);
     
+    planetViewModel = new PlanetViewModel(this,NULL,None,"Sun");
+    
     rayCaster = new RayCaster();
     
     //Scene父类初始化场景必须放到后边，因为其中有初始化模型的调用
@@ -272,7 +274,8 @@ void SpaceScene::TouchEventDown(float x, float y){
 }
 
 void SpaceScene::switchPlanetView(string planetName){
-    planetViewModel = new PlanetViewModel(this,NULL,None,planetName);
+    //planetViewModel = new PlanetViewModel(this,NULL,None,planetName);
+    dynamic_cast<PlanetViewModel*>(planetViewModel)->LoadPlanet(planetName);
     removeModel(solarSystemModel);
     addModel(planetViewModel);
     //planetViewModel->InitModel();

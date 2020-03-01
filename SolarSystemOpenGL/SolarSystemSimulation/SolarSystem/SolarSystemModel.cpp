@@ -186,16 +186,9 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
 }
 
 
-/*!
-	Simple Destructor
-
-	\param[in] None.
-	\return None
-
-*/
-SolarSystemModel::~SolarSystemModel()
-{
-}
+//SolarSystemModel::~SolarSystemModel()
+//{
+//}
 
 /*!
 	Initialize the scene, reserve shaders, compile and cache program

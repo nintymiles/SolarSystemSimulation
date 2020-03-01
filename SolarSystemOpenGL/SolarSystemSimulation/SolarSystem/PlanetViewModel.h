@@ -44,13 +44,19 @@ public:
     PlanetViewModel( Scene* parent, Model* model, ModelType type ,string planetName);
 
     // Destructor for PlanetViewModel
-    virtual ~PlanetViewModel();
+    virtual ~PlanetViewModel(){
+        renderPlanetData.clear();
+        planetModels.clear();
+        trjacetoryModels.clear();
+    }
 
     // Initialize our Model class
     void InitModel();
     
     // Render the Model class
     void Render();
+    
+    void LoadPlanet(string planetName);
     
     // Touch Events
 	void TouchEventDown( float x, float y );
@@ -65,12 +71,15 @@ public:
     static void adjustTimeScale(bool x,float y);
     static float retrieveTimeScale();
     
-    static vector<PlanetRenderData> retrieveRenderPlanetData();
+    //static vector<PlanetRenderData> retrieveRenderPlanetData();
 
 private:
     char MVP;
     char TEX;
     Image* image;
+    Image* starSurfaceImage;
+    Material sunMaterial;
+    Material planetMaterial;
     glm::vec2 texCoordinates[4];
     glm::vec3 vertices[4];
     char* textureImage;

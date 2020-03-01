@@ -104,7 +104,8 @@ void PlanetModel::LoadMesh()
     glVertexAttribPointer(NORMAL_POSITION, 3, GL_FLOAT, GL_FALSE, stride, offset);
     glBindVertexArray(0);
     
-    //objMeshModel->vertices.clear();
+    //clean loaded mesh data
+    objMeshModel->vertices.clear();
 }
 /*!
 	Simple Destructor

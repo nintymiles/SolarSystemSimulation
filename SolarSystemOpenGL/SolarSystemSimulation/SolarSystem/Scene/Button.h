@@ -22,7 +22,7 @@
 using namespace std;
 using namespace namespaceimage;
 
-class Button : public Model, public GestureEvent
+class Button : public Model
 {
     
 public:
