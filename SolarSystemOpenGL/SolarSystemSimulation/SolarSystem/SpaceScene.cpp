@@ -241,6 +241,10 @@ void SpaceScene::switchPlanetViewPostion(){
     
 }
 
+bool comp(const IntersectionData &a, const IntersectionData &b){
+    return a.distance < b.distance;
+};
+
 void SpaceScene::TouchEventDown(float x, float y){
     Scene::TouchEventDown(x, y);
     //set raycaster using the corresponding camera on that rendering scene
@@ -250,12 +254,16 @@ void SpaceScene::TouchEventDown(float x, float y){
         rayCaster->setFromCamera(vec3(x,y,0.0f), viewersPerspective);
     }
     
+    //注意：此处intersecs数据需要根据距离进行排序，最近距离也就是最先被射线命中的物体才应该被选中
     vector<IntersectionData> intersects;
     for( int i=0; i<models.size(); i++ ){
         vector<IntersectionData> interData = models.at(i)->rayCast(rayCaster);
         for(auto data:interData)
             intersects.push_back(data);
     }
+    
+    //sort intersects according to the distance member of IntersectionData increasingly
+    sort(intersects.begin(),intersects.end(),comp);
     
     for(IntersectionData interData:intersects){
         const Material objMaterial = interData.object->GetMaterial();

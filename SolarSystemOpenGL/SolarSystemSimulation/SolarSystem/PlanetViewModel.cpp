@@ -99,18 +99,29 @@ PlanetViewModel::PlanetViewModel( Scene* parent, Model* model, ModelType type,st
     Material spaceMaterial(MaterialNone);
     //spaceMaterial.ambient = glm::vec4(0.01,0.01,0.01,1); //给夜空增加漫射色彩，会让整个夜空相当明亮，尤其星星
     //spaceMaterial.shiness=1;  //夜空的亮度因子设置为5
-    space->SetMaterial(spaceMaterial);
-    space->SetName(std::string("Space"));
-    space->Scale(SpaceScale, SpaceScale, SpaceScale);
-    space->Translate(0.0, 0.0, 0.0);
-    space->SetSurfaceTextureId(spaceImage->getTextureID());
-
+//    space->SetMaterial(spaceMaterial);
+//    space->SetName(std::string("Space"));
+//    space->Scale(SpaceScale, SpaceScale, SpaceScale);
+//    space->Translate(0.0, 0.0, 0.0);
+//    space->SetSurfaceTextureId(spaceImage->getTextureID());
+    
+    //环状的绘制有问题，需要不断改进。
+//    string ringTexName = string(fname) + "saturnringcolor.jpg";
+//    StbImage *ringImage = new StbImage();
+//    ringImage->loadImage((char *)ringTexName.c_str());
+//    RingModel *ring = new RingModel( parent, this,  None );
+//    ring->SetMaterial(planetMaterial);
+//    ring->SetName(std::string("Ring"));
+//    ring->ScaleLocalUniformly(120);
+//    ring->Rotate(-90,1.0, 0.0, 0.0);
+//    ring->SetSurfaceTextureId(ringImage->getTextureID());
+    
 
     aPlanet = new PlanetModel( parent, this,  None );
-    aPlanet->Translate(0.0, 0.0, 0.0);
     aPlanet->SetCenter(glm::vec3(0.0, 0.0, 0.0));
     //sun->ScaleLocal(0.25, 0.25, 0.25);
     //aPlanet->RotateLocal(1.0, 0.0, 1.0, 0.0);
+    
     
 
     starSurfaceImage = new StbImage();
@@ -190,6 +201,7 @@ void PlanetViewModel::Render(){
     //若要保持效果，只需要追踪变换矩阵变量的变化即可
     aPlanet->Reset();
     
+    aPlanet->Translate(0.0, 0.0, 0.0);
     aPlanet->Rotate(dTime*3, 0, 1, 0);
 
     TransformObj->TransformPushMatrix(); // Parent Child Level

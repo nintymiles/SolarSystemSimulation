@@ -1547,10 +1547,7 @@
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/ExternalLibs/";
 				INFOPLIST_FILE = "iOSWrapper/SolarSystem-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(SRCROOT)/ExternalLibs/glm",
-					"$(SRCROOT)/ExternalLibs/libpng",
-				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/ExternalLibs/glm";
 				PRODUCT_BUNDLE_IDENTIFIER = Sean.SolarSystem;
 				PRODUCT_NAME = SolarSystem;
 				WRAPPER_EXTENSION = app;
@@ -1571,10 +1568,7 @@
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/ExternalLibs/";
 				INFOPLIST_FILE = "iOSWrapper/SolarSystem-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(SRCROOT)/ExternalLibs/glm",
-					"$(SRCROOT)/ExternalLibs/libpng",
-				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/ExternalLibs/glm";
 				PRODUCT_BUNDLE_IDENTIFIER = Sean.SolarSystem;
 				PRODUCT_NAME = SolarSystem;
 				WRAPPER_EXTENSION = app;

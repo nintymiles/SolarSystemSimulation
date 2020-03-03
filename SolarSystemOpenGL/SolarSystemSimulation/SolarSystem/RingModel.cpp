@@ -185,10 +185,10 @@ void RingModel::Render()
 //    Camera* lP = ((CustomScene*)this->SceneHandler)->GetLightPerspective();
 //    glm::mat4 shadowCoord = lightBiasMat * lP->GetProjectionMatrix() * lP->GetViewMatrix();
 //    glUniformMatrix4fv( SHADOW_MAT, 1, GL_FALSE,( float * )&shadowCoord );
-
-    if ( IS_LIGHT_PASS >= 0 ){
-        isLightPass ? glUniform1i(IS_LIGHT_PASS, 1) : glUniform1i(IS_LIGHT_PASS, 0);
-    }
+//
+//    if ( IS_LIGHT_PASS >= 0 ){
+//        isLightPass ? glUniform1i(IS_LIGHT_PASS, 1) : glUniform1i(IS_LIGHT_PASS, 0);
+//    }
 
     // Bind the texture unit 0 to surface texture
     glActiveTexture (GL_TEXTURE0);
@@ -269,7 +269,6 @@ void RingModel::ApplyMaterial()
     }
     
     if ( MaterialDiffuse >= 0 ){
-        glm::vec3 color = glm::vec3(1.0, 1.0, 1.0);
         glUniform3f( MaterialDiffuse, materialObj.diffuse.r, materialObj.diffuse.g, materialObj.diffuse.b );
     }
     

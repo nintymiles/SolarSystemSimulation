@@ -304,12 +304,10 @@ vector<IntersectionData> PlanetModel::rayCast(RayCaster *rayCaster){
     
     // 先进行了ray-sphere相交检测
     Ray *ray = rayCaster->ray;
-    vector<vec3> intersectPoints = ray->intersectSphere(sphere);
+    vector<IntersectionData> intersectPoints = ray->intersectSphere(sphere);
     if (intersectPoints.size()==0) return {};
     
-    IntersectionData idata;
-    idata.intersectionPointWorld=intersectPoints[0];
-    idata.distance = 0;
+    IntersectionData idata=intersectPoints[0];
     idata.object = this;
 
 //    //先计算object matrix的反转，用于将射线转换为object coordinate

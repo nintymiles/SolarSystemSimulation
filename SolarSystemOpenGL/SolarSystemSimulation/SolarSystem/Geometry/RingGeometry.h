@@ -41,7 +41,7 @@ class RingGeometry {
     float thetaLength; //经线结束点角度
     
 public:
-    RingGeometry(float innerRadius=0.5f,float outerRaidus=1.0f,int thetaSegments=100,int phiSegments=20,float thetaStart=0.0f,float thetaLength=2*M_PI)
+    RingGeometry(float innerRadius=0.5f,float outerRaidus=1.0f,int thetaSegments=200,int phiSegments=100,float thetaStart=0.0f,float thetaLength=2*M_PI)
     :innerRadius(innerRadius),outerRadius(outerRaidus),thetaSegments(fmax(3,thetaSegments)),phiSegments(fmax(1,phiSegments)),thetaStart(thetaStart),thetaLength(thetaLength){}
     
     ~RingGeometry(){};
@@ -54,16 +54,15 @@ public:
         // some helper variables
         float segment;
         float radius = innerRadius;
-        float radiusStep = ( ( outerRadius - innerRadius ) / phiSegments );
+        float radiusStep = ((outerRadius-innerRadius)/phiSegments);
         vec4 vertex;
         vec2 uv;
         
-        int j, i;
-        
         // generate vertices, normals and uvs
-        for ( j = 0; j <= phiSegments; j ++ ) {
-            
-            for ( i = 0; i <= thetaSegments; i ++ ) {
+        for ( int j = 0; j <= phiSegments; j ++ ) {
+            // thetaSegments数目多计算一次，是为了生成的顶点在圆之上重合，
+            // 从而在顶点索引处就不再需要和起点组合三角形索引。
+            for ( int i = 0; i <= thetaSegments; i ++ ) {
                 RingVertex ringVertex;
                 
                 // values are generate from the inside of the ring to the outside
@@ -87,8 +86,9 @@ public:
                 // uv
                 //内圈的uv坐标
                 //如innerRadius为0.5-1，则x和y的范围为[0.5..0.75]-[0.75..1]
-                uv.x = ( vertex.x / outerRadius + 1 ) / 2;
-                uv.y = ( vertex.y / outerRadius + 1 ) / 2;
+                //纹理值的x值应该只与其半径有关，而与其在x/y轴的投射无关
+                uv.x = (outerRadius-radius)/(outerRadius-innerRadius);
+                uv.y = 0.5; //(vertex.y / outerRadius + 1)/2;
 //                uv.x = radius/outerRadius;
 //                uv.y = (vertex.y - radius)/0.5;
                 
@@ -104,19 +104,26 @@ public:
         }
         
         // indices
-        
-        for ( j = 0; j < phiSegments; j ++ ) {
+        // 生成的图像在xy平面原点有投射，说明indices引用了不存在的点
+        // phiSegments代表了当前顶点所在的圈数，对于三角形顶点索引来讲，最外圈就不再会和更外圈组合。
+        // 故而phiSegments的循环要少一次
+        for (int j = 0; j < phiSegments; j ++) {
             
             int thetaSegmentLevel = j * ( thetaSegments + 1 );
             
-            for ( i = 0; i < thetaSegments; i ++ ) {
+            for (int i = 0; i <= thetaSegments; i ++) {
                 
                 segment = i + thetaSegmentLevel;
                 
+                //最后一次的indices引用了无效点
                 int a = segment;
                 int b = segment + thetaSegments + 1;
                 int c = segment + thetaSegments + 2;
                 int d = segment + 1;
+                
+                //there are degernated triangles when the loop runs last time
+                //if(c<(thetaSegments+1)*(phiSegments+1)){
+                 
                 
                 // faces
                 indices.push_back(a);
@@ -126,6 +133,8 @@ public:
                 indices.push_back(b);
                 indices.push_back(c);
                 indices.push_back(d);
+                
+                //}
                 
             }
             
