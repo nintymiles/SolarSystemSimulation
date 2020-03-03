@@ -11,6 +11,8 @@ using glm::mat4;
 
 class Sphere;
 class Box;
+class IntersectionData; //actually，a structure is an equivalent to a class in C++
+
 class Ray{
 public:
     vec3 origin;
@@ -28,7 +30,7 @@ public:
     vec3 at(float t);
     
     //ray-sphere相交的基本计算
-    vector<vec3> intersectSphere(Sphere* sphere);
+    vector<IntersectionData> intersectSphere(Sphere* sphere);
     //ray-box相交
     vector<vec3> intersectBox(Box* box);
     //ray-triangle

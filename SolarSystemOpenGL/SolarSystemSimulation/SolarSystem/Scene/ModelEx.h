@@ -1,7 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "constant.h"
+#include "Constant.h"
 #include "ProgramManager.h"
 #include "Transform.h"
 #include "Material.h"
@@ -29,6 +29,7 @@ struct IntersectionData {
     vec3 intersectionPointWorld;
     Model* object;
 };
+
 
 class RayCast{
 public:

@@ -2,6 +2,7 @@
 
 #include "Sphere.h"
 #include "Box.h"
+#include "ModelEx.h"
 
 #include <math.h>
 
@@ -42,7 +43,8 @@ vec3 Ray::at(float t){
 //木星之类的大球体选择不精确，是因为形成木星球体的方式为对标准球形几何体的顶点进行伸缩
 //故而当从几何体顶点确定球体直径时，所获得的只是标准球体的直径
 //要解决这个问题，需要在planetmodel中加入行星的半径信息，可计算BV（sphere）时使用半径信息计算真实行星半径
-vector<vec3> Ray::intersectSphere(Sphere* sphere){
+vector<IntersectionData> Ray::intersectSphere(Sphere* sphere){
+    //IntersectionData iData;
     
     vec3 v1;
     //两个矢量相减产生新矢量v1，球体原点和射线原点的矢量
@@ -58,7 +60,7 @@ vector<vec3> Ray::intersectSphere(Sphere* sphere){
     float radius2 = sphere->radius * sphere->radius;
     
     //screen-ray和球体不相交
-    if ( d2 > radius2 ) return vector<vec3>();
+    if ( d2 > radius2 ) return {};
     
     float thc = sqrt( radius2 - d2 );
     
@@ -75,10 +77,10 @@ vector<vec3> Ray::intersectSphere(Sphere* sphere){
     // test to see if t0 is behind the ray:
     // if it is, the ray is inside the sphere, so return the second exit point scaled by t1,
     // in order to always return an intersect point that is in front of the ray.
-    if ( t0 < 0 ) return {this->at(t1)};
+    if ( t0 < 0 ) return {{t1,this->at(t1),NULL}};
     
     // else t0 is in front of the ray, so return the first collision point scaled by t0
-    return {this->at(t0)};
+    return {{t0,this->at(t0),NULL}};
 }
 
 vector<vec3> Ray::intersectBox(Box* box){
