@@ -74,6 +74,12 @@ void main() {
 
     FinalColor = vec4(lightIntensity , 1.0);
     
+//    if(texColor.x>0.0)
+//    if(eyeCoord.x < 1.0 && eyeCoord.y < 1.0)
+//        FinalColor = vec4(0.0,1,0,1.0);
+//    if(length(eyeCoord.xy)>10.0)
+//        FinalColor = vec4(0.0,0,1,1.0);
+    
     return;
 }
 
