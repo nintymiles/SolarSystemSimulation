@@ -87,8 +87,8 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type,
     planetMaterial.ambient = glm::vec4(0.1,0.1,0.1,1);
     
     Material sunMaterial(MaterialNone);
-    sunMaterial.shiness = 69.0; //不愧是sun
-    sunMaterial.ambient = glm::vec4(0.5,0.2,0.1,1);
+    sunMaterial.shiness = 70.0;
+    sunMaterial.ambient = glm::vec4(0.5,0.2,0.2,1);
     
     
     Image* spaceImage = new StbImage();
@@ -107,20 +107,20 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type,
     space->Translate(0.0, 0.0, 0.0);
     space->SetSurfaceTextureId(spaceImage->getTextureID());
 
-//    sun = new PlanetModel( parent, this,  None );
-//    sun->SetMaterial(Material(sunMaterial));
-//    sun->SetName(std::string("Sun"));
-//    sun->Translate(0.0, 0.0, 0.0);
-//    sun->SetCenter(glm::vec3(0.0, 0.0, 0.0));
-//    //sun->ScaleLocal(0.25, 0.25, 0.25);
-//    sun->RotateLocal(1.0, 0.0, 1.0, 0.0);
-//    sun->SetSurfaceTextureId(image->getTextureID());
-    
-    sun = new SunModel(parent,this,None,sphereGeometry);
+    sun = new PlanetModel(parent,this,None,sphereGeometry);
+    sun->SetMaterial(Material(sunMaterial));
     sun->SetName(std::string("Sun"));
     sun->Translate(0.0, 0.0, 0.0);
     sun->SetCenter(glm::vec3(0.0, 0.0, 0.0));
+    //sun->ScaleLocal(0.25, 0.25, 0.25);
     sun->RotateLocal(1.0, 0.0, 1.0, 0.0);
+    sun->SetSurfaceTextureId(image->getTextureID());
+    
+//    sun = new SunModel(parent,this,None,sphereGeometry);
+//    sun->SetName(std::string("Sun"));
+//    sun->Translate(0.0, 0.0, 0.0);
+//    sun->SetCenter(glm::vec3(0.0, 0.0, 0.0));
+//    sun->RotateLocal(1.0, 0.0, 1.0, 0.0);
     
     //环状的绘制有问题，需要不断改进。
 //    string ringTexName = string(fname) + "saturnringcolor.jpg";

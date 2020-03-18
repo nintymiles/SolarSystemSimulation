@@ -120,8 +120,8 @@ private:
     
     shared_ptr<Geometry> sphereGeometry;
     
-    SunModel* sun;
-//    PlanetModel* mercury;
+//    SunModel* sun;
+    PlanetModel* sun;
     
 };
 #endif // SOLAR_SYSTEM_MODEL_H
