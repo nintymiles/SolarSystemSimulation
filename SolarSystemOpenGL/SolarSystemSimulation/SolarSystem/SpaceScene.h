@@ -1,7 +1,7 @@
 #ifndef SPACE_SCENE_H
 #define SPACE_SCENE_H
 #include "Scene.h"
-
+#include "Geometry.h"
 
 class SpaceScene : public Scene
 {
@@ -49,6 +49,8 @@ private:
     Model* solarSystemModel;
     Model* planetViewModel;
     bool planetViewFlag;
+    
+    shared_ptr<Geometry> sphereGeometry;
 };
 
 #endif //SPACE_SCENE_H

@@ -18,6 +18,7 @@
 #include "SpaceModel.h"
 #include "RingModel.h"
 
+
 #include "LineModel.h"
 
 // Namespace used
@@ -59,7 +60,7 @@ vector<PlanetRenderData> SolarSystemModel::retrieveRenderPlanetData(){
 	\return None
 
 */
-SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type):Model(parent, model, type)
+SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type,shared_ptr<Geometry> geometryptr):Model(parent, model, type)
 {
 	if (!parent)
 		return;
@@ -70,6 +71,9 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
 #else
     strcpy( fname, "/sdcard/GLPIFramework/Images/" );
 #endif
+    
+    this->sphereGeometry = geometryptr;
+    
     
     string sunTexName = string(fname) + "sun_texture.jpg";
     string spaceTexName = string(fname) + "galaxy_starfield.png";
@@ -93,7 +97,7 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
     //scene中的对象有多层级包含关系
     SceneHandler        = parent;
     
-    SpaceModel *space = new SpaceModel( parent, this,  None );
+    SpaceModel *space = new SpaceModel(parent, this,None,sphereGeometry);
     Material spaceMaterial(MaterialNone);
     //spaceMaterial.ambient = glm::vec4(0.01,0.01,0.01,1); //给夜空增加漫射色彩，会让整个夜空相当明亮，尤其星星
     //spaceMaterial.shiness=1;  //夜空的亮度因子设置为5
@@ -103,16 +107,20 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
     space->Translate(0.0, 0.0, 0.0);
     space->SetSurfaceTextureId(spaceImage->getTextureID());
 
-
+//    sun = new PlanetModel( parent, this,  None );
+//    sun->SetMaterial(Material(sunMaterial));
+//    sun->SetName(std::string("Sun"));
+//    sun->Translate(0.0, 0.0, 0.0);
+//    sun->SetCenter(glm::vec3(0.0, 0.0, 0.0));
+//    //sun->ScaleLocal(0.25, 0.25, 0.25);
+//    sun->RotateLocal(1.0, 0.0, 1.0, 0.0);
+//    sun->SetSurfaceTextureId(image->getTextureID());
     
-    sun = new PlanetModel( parent, this,  None );
-    sun->SetMaterial(Material(sunMaterial));
+    sun = new SunModel(parent,this,None,sphereGeometry);
     sun->SetName(std::string("Sun"));
     sun->Translate(0.0, 0.0, 0.0);
     sun->SetCenter(glm::vec3(0.0, 0.0, 0.0));
-    //sun->ScaleLocal(0.25, 0.25, 0.25);
     sun->RotateLocal(1.0, 0.0, 1.0, 0.0);
-    sun->SetSurfaceTextureId(image->getTextureID());
     
     //环状的绘制有问题，需要不断改进。
 //    string ringTexName = string(fname) + "saturnringcolor.jpg";
@@ -148,7 +156,7 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
         //glm默认使用degrees，只有定义了宏GLM_FORCE_RADIANS，才会强制使用radians
         trjacetory->RotateLocal(90, 1, 0, 0);
         trjacetory->Rotate(renderData.inclination, 1, 0, 0);
-        
+
         if(renderData.name == "saturn"){
 //            RingModel *ring = new RingModel( parent, this,  None );
 //            ring->SetMaterial(spaceMaterial);
@@ -157,11 +165,11 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type)
 //            ring->Translate(0.0, 0.0, 0.0);
 //            ring->SetSurfaceTextureId(image->getTextureID());
         }
-        
-        PlanetModel *star = new PlanetModel( parent, this,  None );
+
+        PlanetModel *star = new PlanetModel(parent,this,None,sphereGeometry);
         star->SetMaterial(Material(planetMaterial));
         star->SetName(renderData.name);
-        
+
         if(renderData.name == "pluto"){
             star->SetPlanetRadius(renderData.diameter*10);
         }else{

@@ -26,6 +26,7 @@
 #include <vector>
 
 #include "SolarSystemModel.h"
+#include "Geometry.h"
 
 using namespace std;
 using namespace namespaceimage;
@@ -41,7 +42,7 @@ class PlanetViewModel : public Model
     
 public:
     // Constructor for PlanetViewModel
-    PlanetViewModel( Scene* parent, Model* model, ModelType type ,string planetName);
+    PlanetViewModel( Scene* parent, Model* model, ModelType type ,string planetName,shared_ptr<Geometry> geometryPtr);
 
     // Destructor for PlanetViewModel
     virtual ~PlanetViewModel(){
@@ -91,6 +92,8 @@ private:
     static vector<Model*> trjacetoryModels;
     
     PlanetModel* aPlanet;
+    shared_ptr<Geometry> geometry;
+    
     
 };
 #endif

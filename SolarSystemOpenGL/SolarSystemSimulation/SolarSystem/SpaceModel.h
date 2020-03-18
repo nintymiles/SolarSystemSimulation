@@ -6,6 +6,7 @@
 #include "RendererEx.h"
 #include "WaveFrontOBJ.h"
 #include "Light.h"
+#include "Geometry.h"
 
 #include <string>
 
@@ -24,7 +25,7 @@ public:
 
 public:
     // Constructor for PLANETMODEL
-    SpaceModel( Scene* parent, Model* model, ModelType type);
+    SpaceModel( Scene* parent, Model* model, ModelType type,shared_ptr<Geometry> geometryPtr);
 
     // Destructor for PLANETMODEL
     virtual ~SpaceModel();
@@ -88,6 +89,8 @@ private:
     bool isLightPass;
     
     GLuint surfaceTextureId;
+    
+    shared_ptr<Geometry> geometry;
     
     // Char variables is used to store uniform location values
     // Material variables

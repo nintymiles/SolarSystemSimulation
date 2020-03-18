@@ -59,12 +59,13 @@ float PlanetViewModel::retrieveTimeScale(){
 	\return None
 
 */
-PlanetViewModel::PlanetViewModel( Scene* parent, Model* model, ModelType type,string planetName):Model(parent, model, type)
+PlanetViewModel::PlanetViewModel( Scene* parent, Model* model, ModelType type,string planetName,shared_ptr<Geometry> geometryptr):Model(parent, model, type)
 {
 	if (!parent)
 		return;
     
     this->planetName = planetName;
+    this->geometry = geometryptr;
     
     char fname[256]= {""};
 #ifdef __APPLE__
@@ -95,7 +96,7 @@ PlanetViewModel::PlanetViewModel( Scene* parent, Model* model, ModelType type,st
     //scene中的对象有多层级包含关系
     SceneHandler        = parent;
     
-    SpaceModel *space = new SpaceModel( parent, this,  None );
+    SpaceModel *space = new SpaceModel(parent,this,None,geometry);
     Material spaceMaterial(MaterialNone);
     //spaceMaterial.ambient = glm::vec4(0.01,0.01,0.01,1); //给夜空增加漫射色彩，会让整个夜空相当明亮，尤其星星
     //spaceMaterial.shiness=1;  //夜空的亮度因子设置为5
@@ -117,7 +118,7 @@ PlanetViewModel::PlanetViewModel( Scene* parent, Model* model, ModelType type,st
 //    ring->SetSurfaceTextureId(ringImage->getTextureID());
     
 
-    aPlanet = new PlanetModel( parent, this,  None );
+    aPlanet = new PlanetModel(parent,this,None,geometry);
     aPlanet->SetCenter(glm::vec3(0.0, 0.0, 0.0));
     //sun->ScaleLocal(0.25, 0.25, 0.25);
     //aPlanet->RotateLocal(1.0, 0.0, 1.0, 0.0);

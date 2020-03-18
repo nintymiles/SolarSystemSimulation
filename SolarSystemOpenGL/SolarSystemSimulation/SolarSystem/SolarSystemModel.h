@@ -17,6 +17,8 @@
 
 #include "PlanetModel.h"
 #include "StbImage.h"
+#include "SunModel.h"
+#include "Geometry.h"
 
 #include "Event.h"
 
@@ -74,7 +76,7 @@ class SolarSystemModel : public Model
     
 public:
     // Constructor for SolarSystemModel
-    SolarSystemModel( Scene* parent, Model* model, ModelType type);
+    SolarSystemModel( Scene* parent, Model* model, ModelType type,shared_ptr<Geometry> geometryptr);
 
     // Destructor for SolarSystemModel
     virtual ~SolarSystemModel(){
@@ -116,7 +118,9 @@ private:
     static vector<Model*> planetModels;
     static vector<Model*> trjacetoryModels;
     
-    PlanetModel* sun;
+    shared_ptr<Geometry> sphereGeometry;
+    
+    SunModel* sun;
 //    PlanetModel* mercury;
     
 };

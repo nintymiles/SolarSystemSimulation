@@ -7,6 +7,7 @@
 #include <string>
 #include "WaveFrontOBJ.h"
 #include "Light.h"
+#include "Geometry.h"
 
 using namespace std;
 
@@ -34,7 +35,7 @@ public:
 
 public:
     // Constructor for PLANETMODEL
-    PlanetModel( Scene* parent, Model* model, ModelType type);
+    PlanetModel(Scene* parent, Model* model, ModelType type,shared_ptr<Geometry> geometryptr);
 
     // Destructor for PLANETMODEL
     virtual ~PlanetModel();
@@ -83,9 +84,6 @@ private:
     // Parse the wavefront OBJ mesh
     unsigned char RenderPrimitive;
     
-    // Number of vertex Indices
-    int IndexCount;
-    
     // Vertex Array Object ID
     GLuint OBJ_VAO_Id;
 
@@ -112,6 +110,8 @@ private:
     // Light variables
     char LightAmbient,LightSpecular, LightDiffuse, LightPosition;
     glm::mat4 lightBiasMat;
+    
+    shared_ptr<Geometry> geometry;
 
 };
 

@@ -30,7 +30,7 @@ using namespace glm;
 using std::ifstream;
 using std::ostringstream;
 
-SpaceModel::SpaceModel( Scene* parent, Model* model, ModelType type ):Model(parent, model, type)
+SpaceModel::SpaceModel(Scene* parent, Model* model, ModelType type,shared_ptr<Geometry> geometryPtr):Model(parent, model, type)
 {
 	if (!parent)
 		return;
@@ -41,6 +41,8 @@ SpaceModel::SpaceModel( Scene* parent, Model* model, ModelType type ):Model(pare
     //初始化根对象的transformation值
     transformation[0][0] = transformation[1][1] = transformation[2][2] = transformation[3][3] = 1.0;
     
+    geometry = geometryPtr;
+    
     LoadMesh();
 }
 
@@ -50,35 +52,16 @@ void SpaceModel::ReleaseMeshResources()
     glDeleteBuffers(1, &vertexBuffer);
 }
 
-void SpaceModel::LoadMesh()
-{
-    char modelName[]={"Sphere.obj"};
-    char fname[MAX_PATH]= {""};
-#ifdef __IPHONE_4_0
-    GLUtils::extractPath( getenv( "FILESYSTEM" ), fname );
-#else
-    strcpy( fname, "/sdcard/Models/" );
-#endif
-
-    strcat( fname, modelName);
+void SpaceModel::LoadMesh(){
     
-    objMeshModel    = waveFrontObjectModel.ParseObjModel(fname);
-    IndexCount      = waveFrontObjectModel.IndexTotal();
     stride          = (2 * sizeof(vec3) )+ sizeof(vec2)+ sizeof(vec4);
     offset          = ( GLvoid*) ( sizeof(glm::vec3) + sizeof(vec2) );
     offsetTexCoord  = ( GLvoid*) ( sizeof(glm::vec3) );
     
-    
-    // Create the VBO for our obj model vertices.
-    glGenBuffers(1, &vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, objMeshModel->vertices.size() * sizeof(objMeshModel->vertices[0]), &objMeshModel->vertices[0], GL_STATIC_DRAW);
-    
-    
     // Create the VAO, this will store the vertex attributes into vectore state.
     glGenVertexArrays(1, &OBJ_VAO_Id);
     glBindVertexArray(OBJ_VAO_Id);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, geometry->vbo);
     glEnableVertexAttribArray(VERTEX_POSITION);
     glEnableVertexAttribArray(TEX_COORD);
     glEnableVertexAttribArray(NORMAL_POSITION);
@@ -202,7 +185,7 @@ void SpaceModel::Render()
 
 
         // Draw Geometry
-        glDrawArrays(GL_TRIANGLES, 0, IndexCount );
+        glDrawArrays(GL_TRIANGLES, 0, geometry->vboLen);
         glBindVertexArray(0);
         TransformObj->TransformPopMatrix(); // Local Level
     }

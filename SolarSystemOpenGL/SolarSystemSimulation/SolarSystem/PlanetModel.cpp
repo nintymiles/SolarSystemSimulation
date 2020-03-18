@@ -40,7 +40,7 @@ using std::ostringstream;
 
 */
 //构造方法的过程：首先开启深度检测，然后设置基本变量，将物体模型的全局变换矩阵设置为同一矩阵，然后加载mesh。
-PlanetModel::PlanetModel( Scene* parent, Model* model, ModelType type ):Model(parent, model, type)
+PlanetModel::PlanetModel(Scene* parent, Model* model, ModelType type,shared_ptr<Geometry> geometryptr):Model(parent, model, type)
 {
 	if (!parent)
 		return;
@@ -55,6 +55,7 @@ PlanetModel::PlanetModel( Scene* parent, Model* model, ModelType type ):Model(pa
     
     //default sphere radius
     planetRadius = 1.0f;
+    geometry = geometryptr;
         
     LoadMesh();
 }
@@ -67,35 +68,14 @@ void PlanetModel::ReleaseMeshResources()
 
 void PlanetModel::LoadMesh()
 {
-    char modelName[]={"Sphere.obj"};
-    char fname[MAX_PATH]= {""};
-#ifdef __IPHONE_4_0
-    GLUtils::extractPath( getenv( "FILESYSTEM" ), fname );
-#else
-    strcpy( fname, "/sdcard/Models/" );
-#endif
-
-    strcat( fname, modelName);
-    
-    objMeshModel    = waveFrontObjectModel.ParseObjModel(fname);
-    IndexCount      = waveFrontObjectModel.IndexTotal();
     stride          = (2 * sizeof(vec3) )+ sizeof(vec2)+ sizeof(vec4);
     offset          = ( GLvoid*) ( sizeof(glm::vec3) + sizeof(vec2) );
     offsetTexCoord  = ( GLvoid*) ( sizeof(glm::vec3) );
-    
-    for(Vertex v:objMeshModel->vertices){
-        points.push_back(v.position);
-    }
-    // Create the VBO for our obj model vertices.
-    glGenBuffers(1, &vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, objMeshModel->vertices.size() * sizeof(objMeshModel->vertices[0]), &objMeshModel->vertices[0], GL_STATIC_DRAW);
-    
-    
+
     // Create the VAO, this will store the vertex attributes into vectore state.
     glGenVertexArrays(1, &OBJ_VAO_Id);
     glBindVertexArray(OBJ_VAO_Id);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, geometry->vbo);
     glEnableVertexAttribArray(VERTEX_POSITION);
     glEnableVertexAttribArray(TEX_COORD);
     glEnableVertexAttribArray(NORMAL_POSITION);
@@ -104,8 +84,6 @@ void PlanetModel::LoadMesh()
     glVertexAttribPointer(NORMAL_POSITION, 3, GL_FLOAT, GL_FALSE, stride, offset);
     glBindVertexArray(0);
     
-    //clean loaded mesh data
-    objMeshModel->vertices.clear();
 }
 /*!
 	Simple Destructor
@@ -209,9 +187,8 @@ void PlanetModel::Render()
         // Bind with Vertex Array Object for OBJ
         glBindVertexArray(OBJ_VAO_Id);
         
-        
         // Draw Geometry
-        glDrawArrays(GL_TRIANGLES, 0, IndexCount );
+        glDrawArrays(GL_TRIANGLES, 0, geometry->vboLen);
         glBindVertexArray(0);
         TransformObj->TransformPopMatrix(); // Local Level
     }
@@ -290,7 +267,7 @@ vector<IntersectionData> PlanetModel::rayCast(RayCaster *rayCaster){
     // Checking boundingSphere distance to ray
 //    if(this->boundingSphere == NULL){
     this->boundingSphere = new Sphere();
-    this->boundingSphere->setFromPoints(points);
+    this->boundingSphere->setFromPoints(geometry->points);
     //由于每个行星model都是从标准球体建立，从几何数据无法计算出真实的半径，所以需要从半径信息计算
     this->boundingSphere->radius *= planetRadius;
 //    }

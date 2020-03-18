@@ -56,6 +56,17 @@ void SpaceScene::initializeScene()
     //to remove,redudant code
     this->addCamera(viewersPerspective);
     
+    char fname[256]= {""};
+#ifdef __APPLE__
+    GLUtils::extractPath( getenv( "FILESYSTEM" ), fname );
+#else
+    strcpy( fname, "/sdcard/GLPIFramework/Images/" );
+#endif
+    
+    char modelName[]={"Sphere.obj"};
+    string modName = string(fname) + string(modelName);
+    sphereGeometry = Geometry::loadMeshGeometry(modName);
+    
     planetViewPerspective = new Camera("Planet Camera", this);
     planetViewPerspective->SetClearBitFieldMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     planetViewPerspective->SetPosition(cameraPosition);
@@ -73,10 +84,10 @@ void SpaceScene::initializeScene()
     
     //场景中仅被添加了一个customModel，但是customModel中包含了其它子model。CustomModel是顶级对象
     // Camera's are added in the CustomScene's constructor
-    solarSystemModel = new SolarSystemModel(this, NULL, None);
+    solarSystemModel = new SolarSystemModel(this,NULL,None,sphereGeometry);
     this->addModel(solarSystemModel);
     
-    planetViewModel = new PlanetViewModel(this,NULL,None,"Sun");
+    planetViewModel = new PlanetViewModel(this,NULL,None,"Sun",sphereGeometry);
     
     rayCaster = new RayCaster();
     
