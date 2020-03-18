@@ -1,5 +1,5 @@
 #version 300 es
-precision mediump float;
+precision highp float;
 
 // Texture property
 uniform sampler2D planetTexture;

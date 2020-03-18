@@ -116,6 +116,7 @@ bool StbImage::loadImage(char* fileName, bool generateTexID, GLenum target )
             break;
         }
     }
+    glGenerateMipmap(target);
     
     // Release the allocate memory for image bits.
     free (memData.bitsraw);
