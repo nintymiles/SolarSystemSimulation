@@ -1,5 +1,5 @@
 #version 300 es
-precision highp float;
+precision highp float;  //iphone a11(gpu) needs high precision,or calculation will fail.
 
 // Texture property
 uniform sampler2D planetTexture;
