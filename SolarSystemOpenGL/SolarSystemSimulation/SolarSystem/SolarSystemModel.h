@@ -19,6 +19,7 @@
 #include "StbImage.h"
 #include "SunModel.h"
 #include "Geometry.h"
+#include "RingModel.h"
 #include "TextureManager.h"
 
 #include "Event.h"
@@ -119,6 +120,7 @@ private:
     static vector<PlanetRenderData> renderPlanetData;
     static vector<Model*> planetModels;
     static vector<Model*> trjacetoryModels;
+    static Model *saturnRingModel;
     
     shared_ptr<Geometry> sphereGeometry;
     

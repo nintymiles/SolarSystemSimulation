@@ -37,6 +37,7 @@ static double startTime = OpenGL_Helper::PerfMonitor::GetCurrentTime();
 vector<PlanetRenderData> SolarSystemModel::renderPlanetData;
 vector<Model *> SolarSystemModel::planetModels;
 vector<Model *> SolarSystemModel::trjacetoryModels;
+Model * SolarSystemModel::saturnRingModel;
 
 void SolarSystemModel::adjustTimeScale(bool x,float y){
     if(x)
@@ -128,7 +129,7 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type,
     sun->RotateLocal(1.0, 0.0, 1.0, 0.0);
     
     //环状的绘制有问题，需要不断改进。
-//    string ringTexName = string(fname) + "saturnringcolor.jpg";
+    string ringTexName = string(fname) + "saturnringcolor.jpg";
 //    StbImage *ringImage = new StbImage();
 //    image->loadImage((char *)ringTexName.c_str());
 //    RingModel *ring = new RingModel( parent, this,  None );
@@ -160,16 +161,21 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type,
         trjacetory->ScaleLocalUniformly(renderData.distance);
         //glm默认使用degrees，只有定义了宏GLM_FORCE_RADIANS，才会强制使用radians
         trjacetory->RotateLocal(90, 1, 0, 0);
-        trjacetory->Rotate(renderData.inclination, 1, 0, 0);
+        trjacetory->Rotate(-renderData.inclination, 1, 0, 0);
 
-        if(renderData.name == "saturn"){
-//            RingModel *ring = new RingModel( parent, this,  None );
-//            ring->SetMaterial(spaceMaterial);
-//            ring->SetName(std::string("Ring"));
-//            ring->Scale(10, 10, 10);
-//            ring->Translate(0.0, 0.0, 0.0);
-//            ring->SetSurfaceTextureId(image->getTextureID());
-        }
+//        if(renderData.name == "saturn"){
+//            saturnRingModel = new RingModel(parent, this, None);
+//            saturnRingModel->SetMaterial(spaceMaterial);
+//            saturnRingModel->SetName(std::string("Ring"));
+//            saturnRingModel->ScaleLocalUniformly(renderData.diameter+0.1);
+//            saturnRingModel->RotateLocal(-90, 1, 0, 0);
+//            saturnRingModel->Translate(0, 0, 0);
+//            texture = TextureManagerObj->Texture((char *)ringTexName.c_str());
+//            if(texture==NULL){
+//                texture=TextureManagerObj->TextureLoad((char *)ringTexName.c_str(), (char *)ringTexName.c_str());
+//            }
+//            dynamic_cast<RingModel*>(saturnRingModel)->SetSurfaceTextureId(texture->TexID);
+//        }
 
         PlanetModel *star = new PlanetModel(parent,this,None,sphereGeometry);
         star->SetMaterial(Material(planetMaterial));
@@ -199,6 +205,7 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type,
         star->SetSurfaceTextureId(texture->TexID);
 
         planetModels.push_back(star);
+        trjacetoryModels.push_back(trjacetory);
     }
 
 }
@@ -246,6 +253,14 @@ void SolarSystemModel::Render()
         Model* planetModel = planetModels[i];
         //重设planet model的变换数据
         planetModel->Reset();
+        
+        Model* trajectoryModel = trjacetoryModels[i];
+        trajectoryModel->Reset();
+        trajectoryModel->ScaleLocalUniformly(renderData.distance);
+        //glm默认使用degrees，只有定义了宏GLM_FORCE_RADIANS，才会强制使用radians
+        trajectoryModel->RotateLocal(90, 1, 0, 0);
+        //trajectoryModel->Rotate(-renderData.inclination, 1, 0, 0);
+        
 
 //        if(renderData.name == "pluto"){
 //            planetModel->ScaleLocal(renderData.diameter*10, renderData.diameter*10, renderData.diameter*10);
@@ -284,6 +299,16 @@ void SolarSystemModel::Render()
         float ty = -(renderData.distance) * cos(M_PI/2 - phi);
         renderData.translation = glm::vec3(tx,ty,tz);
         planetModel->Translate(tx, ty, tz);
+        
+        trajectoryModel->Rotate(M_PI/2 - phi, 1, 0, 0);
+//        trajectoryModel->Rotate(M_PI/2 - renderData.theta, 0, 1, 0);
+//        trajectoryModel->Rotate(renderData.theta, 0, 0, 1);
+        
+//        if(renderData.name == "saturn"){
+//            saturnRingModel->Reset();
+//        dynamic_cast<RingModel*>(saturnRingModel)->SetRingScale(renderData.diameter+0.5);
+//            saturnRingModel->Translate(tx, ty, tz);
+//        }
 
     }
     

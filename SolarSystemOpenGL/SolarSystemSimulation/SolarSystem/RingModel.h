@@ -46,6 +46,8 @@ public:
     
     void SetSurfaceTextureId(GLuint surfaceTextureId);
     
+    void SetRingScale(float scale=1.0){ringScale = scale;}
+    
 private:
     // Load the mesh model
     void LoadMesh();
@@ -85,6 +87,7 @@ private:
     bool isLightPass;
     
     GLuint surfaceTextureId;
+    GLfloat ringScale;
     
     // Char variables is used to store uniform location values
     // Material variables

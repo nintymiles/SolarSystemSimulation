@@ -102,22 +102,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SolarSystem/RingModel.cpp"
-            timestampString = "604915382.503569"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "RingModel::LoadMesh()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -154,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/PlanetModel.cpp"
-            timestampString = "606209007.567538"
+            timestampString = "606289605.6889139"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "261"
@@ -218,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/SolarSystemModel.cpp"
-            timestampString = "606271189.378341"
+            timestampString = "606292568.432238"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
             landmarkName = "SolarSystemModel::Render()"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,7 +234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/PlanetViewModel.cpp"
-            timestampString = "606271189.37845"
+            timestampString = "606292568.43313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "127"
@@ -266,7 +250,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/PlanetViewModel.cpp"
-            timestampString = "606271189.378795"
+            timestampString = "606292568.4333529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "231"
@@ -346,7 +330,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/PlanetViewModel.h"
-            timestampString = "606271189.379148"
+            timestampString = "606292568.433465"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
@@ -378,7 +362,7 @@
                   moduleName = "SolarSystem"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/afighter/Documents/Github_Projects/SolarSystemSimulation/SolarSystemOpenGL/SolarSystemSimulation/SolarSystem/SpaceScene.cpp"
-                  timestampString = "606268376.951547"
+                  timestampString = "606289605.790888"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "279"
@@ -393,7 +377,7 @@
                   moduleName = "SolarSystem"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/afighter/Documents/Github_Projects/SolarSystemSimulation/SolarSystemOpenGL/SolarSystemSimulation/SolarSystem/SpaceScene.cpp"
-                  timestampString = "606268376.953615"
+                  timestampString = "606289605.7946219"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "279"
@@ -410,7 +394,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/PlanetViewModel.cpp"
-            timestampString = "606271189.379215"
+            timestampString = "606292568.433673"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "165"
@@ -474,7 +458,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/SunModel.cpp"
-            timestampString = "606186000.311606"
+            timestampString = "606289762.749615"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
@@ -490,7 +474,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/PlanetModel.cpp"
-            timestampString = "606209007.568388"
+            timestampString = "606289605.690501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
@@ -522,7 +506,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/SunModel.cpp"
-            timestampString = "606186000.311746"
+            timestampString = "606289762.749823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "242"
@@ -550,27 +534,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SolarSystem/Engine/ProgramManager.cpp"
-            timestampString = "606271189.379565"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "470"
-            endingLineNumber = "470"
-            landmarkName = "ProgramManager::Program(char* programName)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/Engine/TextureManager.cpp"
-            timestampString = "606271189.37962"
+            timestampString = "606292568.43384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "8"
@@ -586,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/Engine/TextureManager.cpp"
-            timestampString = "606271189.379678"
+            timestampString = "606292568.434031"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "TextureManager::TextureLoad(char* name, char* textureFilePath)"
             landmarkType = "7">
          </BreakpointContent>
@@ -602,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SolarSystem/SolarSystemModel.cpp"
-            timestampString = "606271189.379721"
+            timestampString = "606292568.434081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type,shared_ptr&lt;Geometry&gt; geometryptr)"
             landmarkType = "7">
          </BreakpointContent>

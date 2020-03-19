@@ -199,7 +199,8 @@ void RingModel::Render()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 
-
+    //ScaleLocalUniformly(ringScale);
+    
     TransformObj->TransformPushMatrix(); // Parent Child Level
     ApplyModelsParentsTransformation();
 
