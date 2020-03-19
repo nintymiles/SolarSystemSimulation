@@ -176,6 +176,7 @@
 		5C489FB823FE5D57002D89D8 /* ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C489FB523FE5D57002D89D8 /* ShaderManager.cpp */; };
 		5C489FBE23FE5DE9002D89D8 /* FrameBufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C489FBD23FE5DE9002D89D8 /* FrameBufferObject.cpp */; };
 		5C5DFF2223F9FD0C00A69C40 /* TwoSidedPhongFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 5C5DFF2123F9FD0B00A69C40 /* TwoSidedPhongFragment.glsl */; };
+		5C6F1E8B242261A000AC05E3 /* TextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F1E8A242261A000AC05E3 /* TextureManager.cpp */; };
 		5C86B62B2406A560006A31BB /* RayCaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C86B6292406A560006A31BB /* RayCaster.cpp */; };
 		5C86B62E2406BC38006A31BB /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C86B62C2406BC38006A31BB /* Sphere.cpp */; };
 		5C86B6312406BD53006A31BB /* Box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C86B62F2406BD53006A31BB /* Box.cpp */; };
@@ -548,6 +549,8 @@
 		5C489FBC23FE5DE9002D89D8 /* FrameBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameBufferObject.h; path = SolarSystem/Engine/FrameBufferObject.h; sourceTree = "<group>"; };
 		5C489FBD23FE5DE9002D89D8 /* FrameBufferObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FrameBufferObject.cpp; path = SolarSystem/Engine/FrameBufferObject.cpp; sourceTree = "<group>"; };
 		5C5DFF2123F9FD0B00A69C40 /* TwoSidedPhongFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TwoSidedPhongFragment.glsl; sourceTree = "<group>"; };
+		5C6F1E89242261A000AC05E3 /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureManager.h; path = SolarSystem/Engine/TextureManager.h; sourceTree = "<group>"; };
+		5C6F1E8A242261A000AC05E3 /* TextureManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureManager.cpp; path = SolarSystem/Engine/TextureManager.cpp; sourceTree = "<group>"; };
 		5C86B6292406A560006A31BB /* RayCaster.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RayCaster.cpp; path = SolarSystem/Engine/RayCaster.cpp; sourceTree = "<group>"; };
 		5C86B62A2406A560006A31BB /* RayCaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RayCaster.h; path = SolarSystem/Engine/RayCaster.h; sourceTree = "<group>"; };
 		5C86B62C2406BC38006A31BB /* Sphere.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Sphere.cpp; path = SolarSystem/Engine/Sphere.cpp; sourceTree = "<group>"; };
@@ -1094,6 +1097,8 @@
 				5C489FAA23FE5D1B002D89D8 /* Constant.h */,
 				5C489FAC23FE5D1B002D89D8 /* GLutils.cpp */,
 				5C489FAB23FE5D1B002D89D8 /* GLutils.h */,
+				5C6F1E8A242261A000AC05E3 /* TextureManager.cpp */,
+				5C6F1E89242261A000AC05E3 /* TextureManager.h */,
 				5C489FB023FE5D57002D89D8 /* ProgramManager.cpp */,
 				5C489FB423FE5D57002D89D8 /* ProgramManager.h */,
 				5C489FB523FE5D57002D89D8 /* ShaderManager.cpp */,
@@ -1429,6 +1434,7 @@
 				5CF4B71523FFAAF000FE969B /* ViewController.mm in Sources */,
 				5C86B6312406BD53006A31BB /* Box.cpp in Sources */,
 				5CDAFBF623FFE2A700B427C0 /* EllipseCurve.cpp in Sources */,
+				5C6F1E8B242261A000AC05E3 /* TextureManager.cpp in Sources */,
 				5C489F9423FE5BD5002D89D8 /* WaveFrontOBJ.cpp in Sources */,
 				5CF4B71623FFAAF000FE969B /* AppDelegate.m in Sources */,
 				5C489FAF23FE5D1B002D89D8 /* Cache.cpp in Sources */,

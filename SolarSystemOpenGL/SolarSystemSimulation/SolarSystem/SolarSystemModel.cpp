@@ -78,8 +78,8 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type,
     string sunTexName = string(fname) + "sun_texture.jpg";
     string spaceTexName = string(fname) + "galaxy_starfield.png";
     
-    image = new StbImage();
-    image->loadImage((char *)sunTexName.c_str());
+//    image = new StbImage();
+//    image->loadImage((char *)sunTexName.c_str());
     
     
     Material planetMaterial(MaterialNone);
@@ -97,6 +97,11 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type,
     //scene中的对象有多层级包含关系
     SceneHandler        = parent;
     
+    texture = TextureManagerObj->Texture((char *)spaceTexName.c_str());
+    if(texture==NULL){
+        texture=TextureManagerObj->TextureLoad((char *)spaceTexName.c_str(), (char *)spaceTexName.c_str());
+    }
+    
     SpaceModel *space = new SpaceModel(parent, this,None,sphereGeometry);
     Material spaceMaterial(MaterialNone);
     //spaceMaterial.ambient = glm::vec4(0.01,0.01,0.01,1); //给夜空增加漫射色彩，会让整个夜空相当明亮，尤其星星
@@ -105,22 +110,22 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type,
     space->SetName(std::string("Space"));
     space->Scale(SpaceScale, SpaceScale, SpaceScale);
     space->Translate(0.0, 0.0, 0.0);
-    space->SetSurfaceTextureId(spaceImage->getTextureID());
+    space->SetSurfaceTextureId(texture->TexID);
 
-    sun = new PlanetModel(parent,this,None,sphereGeometry);
-    sun->SetMaterial(Material(sunMaterial));
-    sun->SetName(std::string("Sun"));
-    sun->Translate(0.0, 0.0, 0.0);
-    sun->SetCenter(glm::vec3(0.0, 0.0, 0.0));
-    //sun->ScaleLocal(0.25, 0.25, 0.25);
-    sun->RotateLocal(1.0, 0.0, 1.0, 0.0);
-    sun->SetSurfaceTextureId(image->getTextureID());
-    
-//    sun = new SunModel(parent,this,None,sphereGeometry);
+//    sun = new PlanetModel(parent,this,None,sphereGeometry);
+//    sun->SetMaterial(Material(sunMaterial));
 //    sun->SetName(std::string("Sun"));
 //    sun->Translate(0.0, 0.0, 0.0);
 //    sun->SetCenter(glm::vec3(0.0, 0.0, 0.0));
+//    //sun->ScaleLocal(0.25, 0.25, 0.25);
 //    sun->RotateLocal(1.0, 0.0, 1.0, 0.0);
+//    sun->SetSurfaceTextureId(image->getTextureID());
+    
+    sun = new SunModel(parent,this,None,sphereGeometry);
+    sun->SetName(std::string("Sun"));
+    sun->Translate(0.0, 0.0, 0.0);
+    sun->SetCenter(glm::vec3(0.0, 0.0, 0.0));
+    sun->RotateLocal(1.0, 0.0, 1.0, 0.0);
     
     //环状的绘制有问题，需要不断改进。
 //    string ringTexName = string(fname) + "saturnringcolor.jpg";
@@ -182,11 +187,16 @@ SolarSystemModel::SolarSystemModel( Scene* parent, Model* model, ModelType type,
 //        star->SetCenter(glm::vec3(10.0, 2.0, 0.0));
 //        star->ScaleLocal(2.0, 2.0, 2.0);
 
-        Image *startSurfaceImage = new StbImage();
-        //const char *fileName = renderData.textureLocation.c_str();
-        startSurfaceImage->loadImage((char *)renderData.textureLocation.c_str());
+//        Image *startSurfaceImage = new StbImage();
+//        //const char *fileName = renderData.textureLocation.c_str();
+//        startSurfaceImage->loadImage((char *)renderData.textureLocation.c_str());
+        char *pFileName = (char *)renderData.textureLocation.c_str();
+        texture = TextureManagerObj->Texture(pFileName);
+        if(texture==NULL){
+            texture=TextureManagerObj->TextureLoad(pFileName, pFileName);
+        }
 
-        star->SetSurfaceTextureId(startSurfaceImage->getTextureID());
+        star->SetSurfaceTextureId(texture->TexID);
 
         planetModels.push_back(star);
     }

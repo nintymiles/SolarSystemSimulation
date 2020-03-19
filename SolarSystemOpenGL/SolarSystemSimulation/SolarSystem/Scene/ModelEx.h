@@ -3,6 +3,7 @@
 
 #include "Constant.h"
 #include "ProgramManager.h"
+#include "TextureManager.h"
 #include "Transform.h"
 #include "Material.h"
 #include "Object.h"
@@ -170,6 +171,7 @@ protected:
       Store current program handler
       */
 	ProgramManager* ProgramManagerObj;
+    TextureManager* TextureManagerObj;
 
 	/*!
       Handle Projection-View current program metaData

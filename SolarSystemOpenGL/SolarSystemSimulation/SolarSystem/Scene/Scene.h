@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include "Event.h"
+#include "TextureManager.h"
 
 #include "RayCaster.h"
 
@@ -29,6 +30,7 @@ public:
     
     //! Return the ProgramManager handler
     inline ProgramManager* SceneProgramManager(){ return &ProgramManagerObj; }
+    inline TextureManager* SceneTextureManager(){ return &TextureManagerObj; }
     
     //! Return the Transform handler
     inline Transform*  SceneTransform() { return &TransformObj;  }
@@ -94,6 +96,8 @@ protected:
 
     //! Program handler for render
     ProgramManager	ProgramManagerObj;
+    
+    TextureManager TextureManagerObj;
     
     //! Transform operation handler
     Transform	TransformObj;

@@ -5,14 +5,14 @@
 
 //在类的默认构造器中，将programList缓存初始化，所有的元素都清空为NULL，计数器置0
 ProgramManager::ProgramManager(void) {
-    
+
 	for (int idx = 0; idx < MAX_PROGRAM_SIZE; idx++) {
 		programList[idx] = NULL;
 	}
 	programCounter = 0;
 }
 
-//在destructor函数中，将programList缓存中所有的函数都释放，同时计数器置0
+//在destructor函数中，将programList缓存中所有的program都释放，同时计数器置0
 ProgramManager::~ProgramManager(void) {
 	for (int idx = 0; idx < MAX_PROGRAM_SIZE; idx++) {
 		free (programList[idx]);

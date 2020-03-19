@@ -19,6 +19,7 @@
 #include "StbImage.h"
 #include "SunModel.h"
 #include "Geometry.h"
+#include "TextureManager.h"
 
 #include "Event.h"
 
@@ -109,7 +110,8 @@ public:
 private:
     char MVP;
     char TEX;
-    Image* image;
+//    Image* image;
+    
     glm::vec2 texCoordinates[4];
     glm::vec3 vertices[4];
     char* textureImage;
@@ -120,8 +122,10 @@ private:
     
     shared_ptr<Geometry> sphereGeometry;
     
-//    SunModel* sun;
-    PlanetModel* sun;
+    SunModel* sun;
+//    PlanetModel* sun;
+    
+    TEXTURE* texture;
     
 };
 #endif // SOLAR_SYSTEM_MODEL_H

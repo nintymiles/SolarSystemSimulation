@@ -77,8 +77,8 @@ public:
 private:
     char MVP;
     char TEX;
-    Image* image;
-    Image* starSurfaceImage;
+//    Image* image;
+//    Image* starSurfaceImage;
     Material sunMaterial;
     Material planetMaterial;
     glm::vec2 texCoordinates[4];
@@ -94,7 +94,8 @@ private:
     PlanetModel* aPlanet;
     shared_ptr<Geometry> geometry;
     
-    
+    TEXTURE* texture;
+    string sunTexName;
 };
 #endif
  

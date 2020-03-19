@@ -13,6 +13,7 @@ Model::Model(Scene*	handler, Model* model, ModelType type, std::string objectNam
 {
     SceneHandler        = handler;
     ProgramManagerObj	= handler->SceneProgramManager();
+    TextureManagerObj   = handler->SceneTextureManager();
     TransformObj		= handler->SceneTransform();
     modelType           = type;
     transformation      = glm::mat4();

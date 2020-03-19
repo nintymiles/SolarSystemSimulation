@@ -74,11 +74,11 @@ PlanetViewModel::PlanetViewModel( Scene* parent, Model* model, ModelType type,st
     strcpy( fname, "/sdcard/GLPIFramework/Images/" );
 #endif
     
-    string sunTexName = string(fname) + "sun_texture.jpg";
+    this->sunTexName = string(fname) + "sun_texture.jpg";
     string spaceTexName = string(fname) + "galaxy_starfield.png";
     
-    image = new StbImage();
-    image->loadImage((char *)sunTexName.c_str());
+//    image = new StbImage();
+//    image->loadImage((char *)sunTexName.c_str());
     
     
     planetMaterial = Material(MaterialNone);
@@ -90,8 +90,9 @@ PlanetViewModel::PlanetViewModel( Scene* parent, Model* model, ModelType type,st
     sunMaterial.ambient = glm::vec4(0.5,0.2,0.1,1);
     
     
-    Image* spaceImage = new StbImage();
-    spaceImage->loadImage((char *)spaceTexName.c_str());
+    
+    
+
     
     //scene中的对象有多层级包含关系
     SceneHandler        = parent;
@@ -100,11 +101,15 @@ PlanetViewModel::PlanetViewModel( Scene* parent, Model* model, ModelType type,st
     Material spaceMaterial(MaterialNone);
     //spaceMaterial.ambient = glm::vec4(0.01,0.01,0.01,1); //给夜空增加漫射色彩，会让整个夜空相当明亮，尤其星星
     //spaceMaterial.shiness=1;  //夜空的亮度因子设置为5
-//    space->SetMaterial(spaceMaterial);
-//    space->SetName(std::string("Space"));
-//    space->Scale(SpaceScale, SpaceScale, SpaceScale);
-//    space->Translate(0.0, 0.0, 0.0);
-//    space->SetSurfaceTextureId(spaceImage->getTextureID());
+    space->SetMaterial(spaceMaterial);
+    space->SetName(std::string("Space"));
+    space->Scale(SpaceScale, SpaceScale, SpaceScale);
+    space->Translate(0.0, 0.0, 0.0);
+    texture = TextureManagerObj->Texture((char *)spaceTexName.c_str());
+    if(texture==NULL){
+        texture=TextureManagerObj->TextureLoad((char *)spaceTexName.c_str(), (char *)spaceTexName.c_str());
+    }
+    space->SetSurfaceTextureId(texture->TexID);
     
     //环状的绘制有问题，需要不断改进。
 //    string ringTexName = string(fname) + "saturnringcolor.jpg";
@@ -125,7 +130,7 @@ PlanetViewModel::PlanetViewModel( Scene* parent, Model* model, ModelType type,st
     
     
 
-    starSurfaceImage = new StbImage();
+    //starSurfaceImage = new StbImage();
     for (PlanetInfo planet:planetDat){
         PlanetRenderData prd;
 
@@ -151,15 +156,22 @@ void PlanetViewModel::LoadPlanet(string planetName){
     aPlanet->SetPlanetRadius(50.0);
     if(planetName == "Sun"){
         aPlanet->SetMaterial(Material(sunMaterial));
-        aPlanet->SetSurfaceTextureId(image->getTextureID());
+        texture = TextureManagerObj->Texture((char *)sunTexName.c_str());
+        if(texture==NULL){
+            texture=TextureManagerObj->TextureLoad((char *)sunTexName.c_str(), (char *)sunTexName.c_str());
+        }
+        aPlanet->SetSurfaceTextureId(texture->TexID);
         aPlanet->SetName("Sun");
     }else{
         for(PlanetRenderData renderData:renderPlanetData){
             if(renderData.name == planetName){
                 aPlanet->SetMaterial(Material(planetMaterial));
-                image->loadImage((char *)renderData.textureLocation.c_str());
-                starSurfaceImage->loadImage((char *)renderData.textureLocation.c_str());
-                aPlanet->SetSurfaceTextureId(starSurfaceImage->getTextureID());
+                char *pTexFilePath = (char *)renderData.textureLocation.c_str();
+                texture = TextureManagerObj->Texture(pTexFilePath);
+                if(texture==NULL){
+                    texture=TextureManagerObj->TextureLoad(pTexFilePath,pTexFilePath);
+                }
+                aPlanet->SetSurfaceTextureId(texture->TexID);
                 aPlanet->SetName(planetName);
             }
         }
