@@ -13,6 +13,9 @@ TextureManager::TextureManager(void) {
 
 TextureManager::~TextureManager(void) {
 	for (int idx = 0; idx < MAX_TEXTURE_SIZE; idx++) {
+        if(textureList[idx])
+            TextureFree(textureList[idx]);
+        
 		free(textureList[idx]);
 	}
 	textureCounter = 0;
