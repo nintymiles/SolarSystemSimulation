@@ -175,6 +175,11 @@ void SunModel::InitModel()
     glUniform1f(FogDensity, 0.45);
     
     glUniform2f(UVScale, 6.0, 2.0);
+    
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 
 //    texture1: { value: textureLoader.load( 'textures/lava/cloud.png' ) },
 //    texture2: { value: textureLoader.load( 'textures/lava/lavatile.jpg' ) }
@@ -204,17 +209,9 @@ void SunModel::Render()
     // Bind the texture unit 0 to surface texture
     glActiveTexture (GL_TEXTURE2);
     glBindTexture(GL_TEXTURE_2D, cloudImage->getTextureID());
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    //在S坐标上镜像重复，T坐标上简单重复。实际效果x方向镜像，y方向简单重复
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+
     glActiveTexture (GL_TEXTURE3);
     glBindTexture(GL_TEXTURE_2D, lavaImage->getTextureID());
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
     
     ScaleLocalUniformly(planetRadius);
     
